@@ -83,21 +83,23 @@
 
 &lt;h3 id=&#34;rust-toolchain&#34;&gt;Rust Toolchain&lt;/h3&gt;
 
-&lt;p&gt;With Rustup installed, most of the toolchain management is done in the command line with the rustup command. Getting used to it will surely help in the future.&lt;/p&gt;
+&lt;p&gt;With Rustup installed, most of the toolchain management is done in the command line with the Rustup command. Getting used to it will surely help in the future.&lt;/p&gt;
 
 &lt;p&gt;First, lets update everything to be sure (required if it is not a fresh install):&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup update
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then, adding the nightly version of the compiler for trying experimental features and to be able to compile a required tool:&lt;/p&gt;
+&lt;p&gt;Then, adding the nightly version of the compiler for trying experimental features and to be able to compile an useful tool (Clippy):&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup install nightly
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;components&#34;&gt;Components&lt;/h3&gt;
 
-&lt;p&gt;Three core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed. You can read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;. Basically, it will enable auto-completion and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.&lt;/p&gt;
+&lt;p&gt;Three core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed. You can read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Basically, RLS will enable auto-completion and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup component add rust-src
 &amp;gt; rustup component add rust-docs
