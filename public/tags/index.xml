@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Tags on A Rambling Mind </title>
+    <link>https://fungos.github.io/tags/</link>
+    <language>en-us</language>
+    <author>Danny Grein</author>
+    <updated>2017-08-12 13:00:00 -0500 EST</updated>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://fungos.github.io/tags/rust/</link>
+      <pubDate>Sat, 12 Aug 2017 13:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Setup</title>
+      <link>https://fungos.github.io/tags/setup/</link>
+      <pubDate>Sat, 12 Aug 2017 13:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/setup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vscode</title>
+      <link>https://fungos.github.io/tags/vscode/</link>
+      <pubDate>Sat, 12 Aug 2017 13:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/vscode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://fungos.github.io/tags/windows/</link>
+      <pubDate>Sat, 12 Aug 2017 13:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
