@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>{{ .Title }} on {{ .Site.Title }}</title>
+{{ template "theme/chrome/meta.html" . }}
+{{ template "theme/chrome/includes.html" . }}
+<link rel="shortcut icon" href="/images/icon.ico">
+<link rel="canonical" href="{{ .Permalink }}">
+<link href="/rss.xml" type="application/atom+xml" rel="alternate" title="{{ .Site.Title }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>    
+{{ template "theme/chrome/menu.html" . }}
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="posts">
