@@ -249,7 +249,7 @@
 
 <h4 id="native-debug">Native Debug</h4>
 
-<p>This one is not really needed, but I recommend use this to automatically enable VSCode to set breakpoints on Rust code. Otherwise, it would require tuning user settings by setting <code>debug.allowBreakpointsEverywhere</code>.</p>
+<p>This one is not really needed, but I recommend use this to automatically enable VSCode to set breakpoints on Rust code. Otherwise, it would require tuning user settings (<code>CTRL+,</code>) and setting <code>debug.allowBreakpointsEverywhere</code>.</p>
 
 <p>Extension name: <code>webfreak.debug</code></p>
 
@@ -258,11 +258,17 @@
 
 <h3 id="visualizers">Visualizers</h3>
 
+<blockquote>
+<p>Note: This section will soon be deprecated. A <a href="https://github.com/rust-lang/rust/pull/43221">recent commit</a> on Rust, is now embedding visualization information inside PDBs. This is already valid for Nightly toolchain, but Stable still requires this manual step.</p>
+</blockquote>
+
 <p>With Rust MSVC toolchain comes some type visualizers for Visual Studio Debugger (Natvis), these can be used to ease the visualization of some very few Rust types within the Debugger. Sadly, there are still limitations of what can be specified in a Natvis file.</p>
 
 <p>The downside is that the installation of the visualization files are a bit manual at the moment, so this is the hardest part of all the Rust environment setup.</p>
 
 <p>The files in question are in <code>%HOMEPATH%\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\etc</code> and must be copied to <code>%HOMEPATH%\.vscode\extensions\ms-vscode.cpptools-0.12.2\debugAdapters\vsdbg\bin\Visualizers</code> (note the version on ms-vscode.cpptools path, this can be different for your case).</p>
+
+<p>If a custom visualizer is needed, an entry <code>&quot;visualizerFile&quot;</code> can be set inside <code>launch.json</code> (environment variables can be referenced as <code>${env:VAR}</code>), so for example, one can set: <code>&quot;visualizerFile&quot;: &quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&quot;</code>. For the moment only one file can be used, an <a href="https://github.com/Microsoft/vscode-cpptools/issues/925">issue</a> is open to make it accept multiple files thought.</p>
 
 <h2 id="debugging">Debugging</h2>
 
@@ -362,6 +368,7 @@
 <ul>
 <li>Fixed script to consider the fresh VSCode 64bits. Thanks @colemickens (Reddit).</li>
 <li>Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).</li>
+<li>Added more information about how to add a natvis file into <code>launch.json</code> and mention that soon it will not be required, as it will be automatically embedded onto PDB files.</li>
 </ul>
 
 </div>
