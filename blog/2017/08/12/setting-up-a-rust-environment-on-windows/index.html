@@ -268,7 +268,7 @@
 
 <p>The files in question are in <code>%HOMEPATH%\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\etc</code> and must be copied to <code>%HOMEPATH%\.vscode\extensions\ms-vscode.cpptools-0.12.2\debugAdapters\vsdbg\bin\Visualizers</code> (note the version on ms-vscode.cpptools path, this can be different for your case).</p>
 
-<p>If a custom visualizer is needed, an entry <code>&quot;visualizerFile&quot;</code> can be set inside <code>launch.json</code> (environment variables can be referenced as <code>${env:VAR}</code>), so for example, one can set: <code>&quot;visualizerFile&quot;: &quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&quot;</code>. For the moment only one file can be used, an <a href="https://github.com/Microsoft/vscode-cpptools/issues/925">issue</a> is open to make it accept multiple files thought.</p>
+<p>If a custom visualizer is needed, an entry <code>&quot;visualizerFile&quot;</code> can be set inside <code>launch.json</code> (environment variables can be referenced as <code>${env:VAR}</code>), so for example, one can set: <code>&quot;visualizerFile&quot;: &quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&quot;</code>. For the moment, only one file can be used, an <a href="https://github.com/Microsoft/vscode-cpptools/issues/925">issue</a> is open to make it work with multiple files.</p>
 
 <h2 id="debugging">Debugging</h2>
 

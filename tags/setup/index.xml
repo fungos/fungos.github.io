@@ -193,7 +193,7 @@
 
 &lt;p&gt;The files in question are in &lt;code&gt;%HOMEPATH%\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\etc&lt;/code&gt; and must be copied to &lt;code&gt;%HOMEPATH%\.vscode\extensions\ms-vscode.cpptools-0.12.2\debugAdapters\vsdbg\bin\Visualizers&lt;/code&gt; (note the version on ms-vscode.cpptools path, this can be different for your case).&lt;/p&gt;
 
-&lt;p&gt;If a custom visualizer is needed, an entry &lt;code&gt;&amp;quot;visualizerFile&amp;quot;&lt;/code&gt; can be set inside &lt;code&gt;launch.json&lt;/code&gt; (environment variables can be referenced as &lt;code&gt;${env:VAR}&lt;/code&gt;), so for example, one can set: &lt;code&gt;&amp;quot;visualizerFile&amp;quot;: &amp;quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&amp;quot;&lt;/code&gt;. For the moment only one file can be used, an &lt;a href=&#34;https://github.com/Microsoft/vscode-cpptools/issues/925&#34;&gt;issue&lt;/a&gt; is open to make it accept multiple files thought.&lt;/p&gt;
+&lt;p&gt;If a custom visualizer is needed, an entry &lt;code&gt;&amp;quot;visualizerFile&amp;quot;&lt;/code&gt; can be set inside &lt;code&gt;launch.json&lt;/code&gt; (environment variables can be referenced as &lt;code&gt;${env:VAR}&lt;/code&gt;), so for example, one can set: &lt;code&gt;&amp;quot;visualizerFile&amp;quot;: &amp;quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&amp;quot;&lt;/code&gt;. For the moment, only one file can be used, an &lt;a href=&#34;https://github.com/Microsoft/vscode-cpptools/issues/925&#34;&gt;issue&lt;/a&gt; is open to make it work with multiple files.&lt;/p&gt;
 
 &lt;h2 id=&#34;debugging&#34;&gt;Debugging&lt;/h2&gt;
 
