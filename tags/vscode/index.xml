@@ -77,14 +77,15 @@
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup install nightly
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;components&#34;&gt;Components&lt;/h3&gt;
+&lt;h3 id=&#34;rls-and-components&#34;&gt;RLS and Components&lt;/h3&gt;
 
-&lt;p&gt;Three core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed. You can read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Four core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed and it requires the rust-analysis component. You can read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Basically, RLS will enable auto-completion and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup component add rust-src
 &amp;gt; rustup component add rust-docs
+&amp;gt; rustup component add ryst-analysis
 &amp;gt; rustup component add rls
 &amp;gt; rustup update
 &lt;/code&gt;&lt;/pre&gt;
@@ -104,14 +105,23 @@
 &lt;p&gt;Note: Rustfmt will be asked to be installed by Visual Studio Code if it isn&amp;rsquo;t already installed anyway.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;But rustfmt is in active development and the recommended way is by using the nightly version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup run nightly cargo install rustfmt-nightly
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But now, formating your code should be done by issuing the command bellow, indicating it uses the nightly toolchain  otherwise and error loading its dependencies will happen:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; cargo +nightly fmt
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h3 id=&#34;clippy&#34;&gt;Clippy&lt;/h3&gt;
 
 &lt;p&gt;Clippy is another jewel of Rust, it is the second best friend (after Rust compiler) on helping learning Rust and improving the code. It is a linter that will catch issues and suggest improvements, it should be used regularly and will help learning some tricks and writing idiomatic code. The downside if we can say so is that it requires a nightly compiler to install/compile it.&lt;/p&gt;
 
 &lt;p&gt;Again, to install, use Cargo (and be sure to have the nightly toolchain in use):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup default nightly
-&amp;gt; cargo install clippy
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup run nightly cargo install clippy
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;
@@ -119,6 +129,11 @@
 
 &lt;p&gt;Note: Clippy will be asked to be installed by Visual Studio Code if it isn&amp;rsquo;t already installed anyway.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;To check a Rust project using Clippy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; cargo clippy
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;visual-studio-code&#34;&gt;Visual Studio Code&lt;/h2&gt;
 
@@ -266,6 +281,13 @@
 &lt;h2 id=&#34;feedback&#34;&gt;Feedback&lt;/h2&gt;
 
 &lt;p&gt;Help me improving this text by submitting fixes for wrong wording/phrasing or typos in &lt;a href=&#34;https://github.com/fungos/fungos.github.io/issues&#34;&gt;this repo issue tracker&lt;/a&gt; or by commenting on twitter or elsewhere!&lt;/p&gt;
+
+&lt;h2 id=&#34;updates&#34;&gt;Updates&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fixed script to consider the fresh VSCode 64bits. Thanks @colemickens (Reddit).&lt;/li&gt;
+&lt;li&gt;Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
