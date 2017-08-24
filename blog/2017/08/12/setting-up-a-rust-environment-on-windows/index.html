@@ -154,20 +154,26 @@
 
 <h3 id="rls-and-components">RLS and Components</h3>
 
-<p>Four core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed and it requires the rust-analysis component. You can read more about what RLS can do <a href="http://www.ncameron.org/blog/what-the-rls-can-do/">here</a>.</p>
+<p>RLS is essential and the main component, but it comes with its own requirements: the Rust source code, documentation and the analysis component.
+The source and documentation will be used by analysis component to feed RLS with required data about existing crates and code. Read more about what RLS can do <a href="http://www.ncameron.org/blog/what-the-rls-can-do/">here</a>.</p>
 
-<p>Basically, RLS will enable auto-completion and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.</p>
+<p>Basically, RLS enable auto-completion, documentation tooltips and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.</p>
 
-<pre><code class="language-dos">&gt; rustup component add rust-src
+<pre><code class="language-dos">&gt; rustup default nightly
+&gt; rustup component add rust-src
 &gt; rustup component add rust-docs
-&gt; rustup component add ryst-analysis
+&gt; rustup component add rust-analysis
 &gt; rustup component add rls
 &gt; rustup update
 </code></pre>
 
+<blockquote>
+<p>Note: Both <code>rust-analysis</code> and <code>rls</code> can only be installed by using the nightly toolchain. Nightly can be set as the default toolchain or by passing the flag <code>--toolchain nightly</code> to the Rustup command line.</p>
+</blockquote>
+
 <h3 id="rustfmt">Rustfmt</h3>
 
-<p>Rustfmt will automatically format the code accordingly to the current code style standard. Opposed to languages as C or C++ where each code base has its own style, Rust (and for the matter, most recent languages) enforce a standard style on your code, you may think it is too intrusive, but it is better for everyone on the end. More information about styling can be found on rustfmt <a href="https://github.com/rust-lang-nursery/fmt-rfcs/blob/master/guide/guide.md">RFC repository</a>.</p>
+<p>Rustfmt will automatically format the code accordingly to the current code style standard. Opposed to languages as C or C++ where each code base has its own style, Rust (and for the matter, most recent languages) enforce a standard style on the code. You may think it is too intrusive, but it is better for everyone by the end. More information about styling can be found on rustfmt <a href="https://github.com/rust-lang-nursery/fmt-rfcs/blob/master/guide/guide.md">RFC repository</a>.</p>
 
 <p>To install it, suffice to use Cargo:</p>
 
@@ -185,7 +191,7 @@
 <pre><code class="language-dos">&gt; rustup run nightly cargo install rustfmt-nightly
 </code></pre>
 
-<p>But now, formating your code should be done by issuing the command bellow, indicating it uses the nightly toolchain  otherwise and error loading its dependencies will happen:</p>
+<p>Now, formating code should be done by issuing the command bellow, indicating it uses the nightly toolchain otherwise and error loading its dependencies will happen:</p>
 
 <pre><code class="language-dos">&gt; cargo +nightly fmt
 </code></pre>
@@ -212,7 +218,7 @@
 
 <h2 id="visual-studio-code">Visual Studio Code</h2>
 
-<p>I&rsquo;ve tried some different IDEs, you can take a look <a href="https://areweideyet.com/">here</a> for some alternatives IDEs, and their current support state. But from all these, I believe VSCode (at the moment) is the best and most complete mostly due to the <a href="https://github.com/Microsoft/language-server-protocol">Language Server Protocol</a>/RLS.</p>
+<p>I&rsquo;ve tried some different IDEs (take a look <a href="https://areweideyet.com/">here</a> for some alternatives and their current support state), but I believe VSCode (at the moment) is the best and most complete mostly due to the <a href="https://github.com/Microsoft/language-server-protocol">Language Server Protocol</a>/RLS.</p>
 
 <blockquote>
 <p>Note: The second best is <a href="https://intellij-rust.github.io/">IntelliJ Rust</a> and now it is <a href="https://blog.jetbrains.com/blog/2017/08/04/official-support-for-open-source-rust-plugin-for-intellij-idea-clion-and-other-jetbrains-ides/">officially supported by JetBrains</a>. The problem is that it is heavy. I wouldn&rsquo;t recommend it unless you&rsquo;re already have it. Also, it does not support debugging, but this is being worked on.</p>
@@ -369,6 +375,7 @@
 <li>Fixed script to consider the fresh VSCode 64bits. Thanks @colemickens (Reddit).</li>
 <li>Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).</li>
 <li>Added more information about how to add a natvis file into <code>launch.json</code> and mention that soon it will not be required, as it will be automatically embedded onto PDB files.</li>
+<li>Add information and fix typo. Closes <a href="https://github.com/fungos/fungos.github.io/issues/1">issue #1</a> by @TheCycoONE (Github).</li>
 </ul>
 
 </div>

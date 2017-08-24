@@ -79,20 +79,26 @@
 
 &lt;h3 id=&#34;rls-and-components&#34;&gt;RLS and Components&lt;/h3&gt;
 
-&lt;p&gt;Four core components are recommended to be installed with Rustup so to have a full offline environment. Rust source and Rust documentation are not essential, but are nice to have if you may be offline while writing Rust. RLS on the other side, is essential and should be installed and it requires the rust-analysis component. You can read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;RLS is essential and the main component, but it comes with its own requirements: the Rust source code, documentation and the analysis component.
+The source and documentation will be used by analysis component to feed RLS with required data about existing crates and code. Read more about what RLS can do &lt;a href=&#34;http://www.ncameron.org/blog/what-the-rls-can-do/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Basically, RLS will enable auto-completion and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.&lt;/p&gt;
+&lt;p&gt;Basically, RLS enable auto-completion, documentation tooltips and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup component add rust-src
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup default nightly
+&amp;gt; rustup component add rust-src
 &amp;gt; rustup component add rust-docs
-&amp;gt; rustup component add ryst-analysis
+&amp;gt; rustup component add rust-analysis
 &amp;gt; rustup component add rls
 &amp;gt; rustup update
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;blockquote&gt;
+&lt;p&gt;Note: Both &lt;code&gt;rust-analysis&lt;/code&gt; and &lt;code&gt;rls&lt;/code&gt; can only be installed by using the nightly toolchain. Nightly can be set as the default toolchain or by passing the flag &lt;code&gt;--toolchain nightly&lt;/code&gt; to the Rustup command line.&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;h3 id=&#34;rustfmt&#34;&gt;Rustfmt&lt;/h3&gt;
 
-&lt;p&gt;Rustfmt will automatically format the code accordingly to the current code style standard. Opposed to languages as C or C++ where each code base has its own style, Rust (and for the matter, most recent languages) enforce a standard style on your code, you may think it is too intrusive, but it is better for everyone on the end. More information about styling can be found on rustfmt &lt;a href=&#34;https://github.com/rust-lang-nursery/fmt-rfcs/blob/master/guide/guide.md&#34;&gt;RFC repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Rustfmt will automatically format the code accordingly to the current code style standard. Opposed to languages as C or C++ where each code base has its own style, Rust (and for the matter, most recent languages) enforce a standard style on the code. You may think it is too intrusive, but it is better for everyone by the end. More information about styling can be found on rustfmt &lt;a href=&#34;https://github.com/rust-lang-nursery/fmt-rfcs/blob/master/guide/guide.md&#34;&gt;RFC repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;To install it, suffice to use Cargo:&lt;/p&gt;
 
@@ -110,7 +116,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; rustup run nightly cargo install rustfmt-nightly
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;But now, formating your code should be done by issuing the command bellow, indicating it uses the nightly toolchain  otherwise and error loading its dependencies will happen:&lt;/p&gt;
+&lt;p&gt;Now, formating code should be done by issuing the command bellow, indicating it uses the nightly toolchain otherwise and error loading its dependencies will happen:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;&amp;gt; cargo +nightly fmt
 &lt;/code&gt;&lt;/pre&gt;
@@ -137,7 +143,7 @@
 
 &lt;h2 id=&#34;visual-studio-code&#34;&gt;Visual Studio Code&lt;/h2&gt;
 
-&lt;p&gt;I&amp;rsquo;ve tried some different IDEs, you can take a look &lt;a href=&#34;https://areweideyet.com/&#34;&gt;here&lt;/a&gt; for some alternatives IDEs, and their current support state. But from all these, I believe VSCode (at the moment) is the best and most complete mostly due to the &lt;a href=&#34;https://github.com/Microsoft/language-server-protocol&#34;&gt;Language Server Protocol&lt;/a&gt;/RLS.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve tried some different IDEs (take a look &lt;a href=&#34;https://areweideyet.com/&#34;&gt;here&lt;/a&gt; for some alternatives and their current support state), but I believe VSCode (at the moment) is the best and most complete mostly due to the &lt;a href=&#34;https://github.com/Microsoft/language-server-protocol&#34;&gt;Language Server Protocol&lt;/a&gt;/RLS.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Note: The second best is &lt;a href=&#34;https://intellij-rust.github.io/&#34;&gt;IntelliJ Rust&lt;/a&gt; and now it is &lt;a href=&#34;https://blog.jetbrains.com/blog/2017/08/04/official-support-for-open-source-rust-plugin-for-intellij-idea-clion-and-other-jetbrains-ides/&#34;&gt;officially supported by JetBrains&lt;/a&gt;. The problem is that it is heavy. I wouldn&amp;rsquo;t recommend it unless you&amp;rsquo;re already have it. Also, it does not support debugging, but this is being worked on.&lt;/p&gt;
@@ -294,6 +300,7 @@
 &lt;li&gt;Fixed script to consider the fresh VSCode 64bits. Thanks @colemickens (Reddit).&lt;/li&gt;
 &lt;li&gt;Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).&lt;/li&gt;
 &lt;li&gt;Added more information about how to add a natvis file into &lt;code&gt;launch.json&lt;/code&gt; and mention that soon it will not be required, as it will be automatically embedded onto PDB files.&lt;/li&gt;
+&lt;li&gt;Add information and fix typo. Closes &lt;a href=&#34;https://github.com/fungos/fungos.github.io/issues/1&#34;&gt;issue #1&lt;/a&gt; by @TheCycoONE (Github).&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
