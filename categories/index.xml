@@ -8,9 +8,18 @@
     <updated>0001-01-01 00:00:00 &#43;0000 UTC</updated>
     
     <item>
+      <title>Gamedev</title>
+      <link>https://fungos.github.io/categories/gamedev/</link>
+      <pubDate>Mon, 20 Nov 2017 22:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/categories/gamedev/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Programming</title>
       <link>https://fungos.github.io/categories/programming/</link>
-      <pubDate>Sat, 12 Aug 2017 13:00:00 EST</pubDate>
+      <pubDate>Mon, 20 Nov 2017 22:00:00 EST</pubDate>
       <author>Alexander Ivanov</author>
       <guid>https://fungos.github.io/categories/programming/</guid>
       <description></description>

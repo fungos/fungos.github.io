@@ -5,7 +5,34 @@
     <link>https://fungos.github.io/tags/</link>
     <language>en-us</language>
     <author>Danny Grein</author>
-    <updated>2017-08-12 13:00:00 -0500 EST</updated>
+    <updated>2017-11-20 22:00:00 -0500 EST</updated>
+    
+    <item>
+      <title>C/C&#43;&#43;</title>
+      <link>https://fungos.github.io/tags/c/c&#43;&#43;/</link>
+      <pubDate>Mon, 20 Nov 2017 22:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/c/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Live</title>
+      <link>https://fungos.github.io/tags/live/</link>
+      <pubDate>Mon, 20 Nov 2017 22:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/live/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reload</title>
+      <link>https://fungos.github.io/tags/reload/</link>
+      <pubDate>Mon, 20 Nov 2017 22:00:00 EST</pubDate>
+      <author>Alexander Ivanov</author>
+      <guid>https://fungos.github.io/tags/reload/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Rust</title>

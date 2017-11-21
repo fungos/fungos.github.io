@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fungos.github.io/blog/2017/11/20/cr.h-a-simple-c-hot-reload-header-only-library/</loc>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fungos.github.io/about/</loc>
     <lastmod>2017-08-12T13:00:00-05:00</lastmod>
   </url>
@@ -14,12 +19,30 @@
   
   <url>
     <loc>https://fungos.github.io/</loc>
-    <lastmod>2017-08-12T13:00:00-05:00</lastmod>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://fungos.github.io/tags/c/c&#43;&#43;/</loc>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://fungos.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://fungos.github.io/categories/gamedev/</loc>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://fungos.github.io/tags/live/</loc>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -31,13 +54,19 @@
   
   <url>
     <loc>https://fungos.github.io/post/</loc>
-    <lastmod>2017-08-12T13:00:00-05:00</lastmod>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://fungos.github.io/categories/programming/</loc>
-    <lastmod>2017-08-12T13:00:00-05:00</lastmod>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://fungos.github.io/tags/reload/</loc>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -55,7 +84,7 @@
   
   <url>
     <loc>https://fungos.github.io/tags/</loc>
-    <lastmod>2017-08-12T13:00:00-05:00</lastmod>
+    <lastmod>2017-11-20T22:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
