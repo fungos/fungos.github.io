@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>fungos&#x27; home</title>
+        <link>https://fungos.github.io</link>
+        <description>a bit of anything</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="https://fungos.github.io/categories/programming/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>cr.h: A Simple C Hot Reload Header-only Library</title>
+                <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+                <link>https://fungos.github.io/cr-simple-c-hot-reload/</link>
+                <guid>https://fungos.github.io/cr-simple-c-hot-reload/</guid>
+                <description>&lt;p&gt;Recently I&#x27;ve been back to hobby coding simple C stuff, and one project that I&#x27;m doing with a friend tries to simple emulate some old game. The idea is really basic, but we want to do it in the C-style without over engineering or losing track of the hobby feeling.&lt;&#x2F;p&gt;
+&lt;p&gt;But! It is really hard to not care at least a bit, even if it is just hobby stuff. I got literally side-tracked at one point and here I describe why and the resulting product of this.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;camo.githubusercontent.com&#x2F;08a269b19513df8325a177ff96e4e387f36b5bbf&#x2F;68747470733a2f2f692e696d6775722e636f6d2f4e7136733047502e676966&quot; alt=&quot;ImGui with cr.h&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;The &amp;quot;Problem&amp;quot;&lt;&#x2F;h2&gt;
+&lt;p&gt;While prototyping a functionality in this project, I wanted to be able to quickly iterate trying some ideas. My first reaction was that having a scripting language from the start would be a benefit for testing out ideas in a fast-paced way, but at the same time that would easily get in the way (by requiring bindings and maintenance) considering the time available for some hobby coding. On the other side, something that wouldn&#x27;t get in the way would be doing it in a way as close as possible of the C and with less boilerplate possible, helping us keep the focus on the project itself.&lt;&#x2F;p&gt;
+&lt;p&gt;If what we wanted is something close to C, it could be done in at least two ways:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;a script based on a C subset (preferable compilable to C); or,&lt;&#x2F;li&gt;
+&lt;li&gt;run-time hot-reload for live coding;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;br&#x2F;&gt;
+Independent of which way we decided to go with, I had already some expectations about it, I wanted something that respected most of the following requirements, loosely based on my priorities for a hobby project:
+&lt;ul&gt;
+&lt;li&gt;easy to use;&lt;&#x2F;li&gt;
+&lt;li&gt;requires the minimum amount of boilerplate;&lt;&#x2F;li&gt;
+&lt;li&gt;easy to maintain;&lt;&#x2F;li&gt;
+&lt;li&gt;fast;&lt;&#x2F;li&gt;
+&lt;li&gt;independent of build system and not requiring custom build steps or anything;&lt;&#x2F;li&gt;
+&lt;li&gt;closest possible to the C-family syntax (ie. Lua was a big NO);&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;the-options&quot;&gt;The &amp;quot;Options&amp;quot;&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ve checked some scripting languages and none of them fit most of the listed requirements. The better ones are slow or complex and the faster ones (as Lua) have annoying syntax. I mostly based my evaluation on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;r-lyeh&#x2F;scriptorium&quot;&gt;this&lt;&#x2F;a&gt; very nice listing with some benchmarks and code samples.&lt;&#x2F;p&gt;
+&lt;p&gt;In the other hand, creating a kind of C script is not that simple, it requires much more code to achieve something usable than integrating some ready-to-use scripting language. There is a bunch of libraries and tools that can help, like embedding a simple compiler as &lt;a href=&quot;https:&#x2F;&#x2F;bellard.org&#x2F;tcc&#x2F;&quot;&gt;TCC&lt;&#x2F;a&gt; or one complex as &lt;a href=&quot;https:&#x2F;&#x2F;clang.llvm.org&#x2F;docs&#x2F;Tooling.html&quot;&gt;libclang&#x2F;libtooling&lt;&#x2F;a&gt;, or even maybe something that already embedded the compiler for us, as &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;anael-seghezzi&#x2F;CToy&quot;&gt;C-Toy&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;root.cern.ch&#x2F;cint&quot;&gt;CINT&lt;&#x2F;a&gt;. But that adds a lot of dependency code, requires too much fiddling with build systems, still requires writing bindings and aren&#x27;t really &lt;em&gt;easy to use&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The other option would be doing hot-reloading of the runtime code as we change it. Even if this may appear complex, it is at least not as complex as to write a simple language. One downside is that opposed to scripts, this area does not have much public content in both articles and source code forms. Luckily enough, this idea fits with my concept of hobby stuff and is doable in my free time.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;hot-reloading&quot;&gt;Hot Reloading&lt;&#x2F;h3&gt;
+&lt;p&gt;One very known solution is &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;RuntimeCompiledCPlusPlus&#x2F;RuntimeCompiledCPlusPlus&quot;&gt;RuntimeCompiledCPlusPlus (RCC++)&lt;&#x2F;a&gt;, other than that, there is nothing else &lt;strong&gt;ready-to-use&lt;&#x2F;strong&gt; even if this is a somewhat common practice privately. So first, lets thanks &lt;a href=&quot;https:&#x2F;&#x2F;www.enkisoftware.com&#x2F;about#doug&quot;&gt;Doug Binks&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;www.enkisoftware.com&quot;&gt;enkisoftware&lt;&#x2F;a&gt; for publishing RCC++ with an open source license, this is a much required improvement over the situation.&lt;&#x2F;p&gt;
+&lt;p&gt;RCC++ is a full featured solution, and this comes with its own amount of complexity. On my case, I didn&#x27;t need all features it offers, but I strongly recommend evaluating it when looking for a solution, as each one has its pros and cons. To know more about its design and usage, I recommend reading &lt;a href=&quot;http:&#x2F;&#x2F;runtimecompiledcplusplus.blogspot.ca&#x2F;2016&#x2F;04&#x2F;runtime-compiled-c-article-available.html&quot;&gt;this article&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Another good thing about RCC++ is that it has listing of some &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;RuntimeCompiledCPlusPlus&#x2F;RuntimeCompiledCPlusPlus&#x2F;wiki&#x2F;Alternatives&quot;&gt;alternatives&lt;&#x2F;a&gt; solutions on code hot-reloading, including some nice posts by people that use it for actual development like &lt;a href=&quot;http:&#x2F;&#x2F;ourmachinery.com&#x2F;post&#x2F;dll-hot-reloading-in-theory-and-practice&#x2F;&quot;&gt;this post&lt;&#x2F;a&gt; from &lt;a href=&quot;http:&#x2F;&#x2F;ourmachinery.com&#x2F;&quot;&gt;Our Machinery&lt;&#x2F;a&gt;. Sadly, none of the projects with source code seems ready to use, as they look more like experimentation projects and most of them if not all, don&#x27;t have multi platform support or are simple barely usable at all.&lt;&#x2F;p&gt;
+&lt;p&gt;So, I decided to write one that I hope to be simple but also usable by anyone:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cr-h-the-c-reloader&quot;&gt;cr.h: the c reloader&lt;&#x2F;h2&gt;
+&lt;p&gt;Considering the requirements for our hobby project listed before, in a public and open source project these requirements would become:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;simple to use, but not basic;&lt;&#x2F;li&gt;
+&lt;li&gt;less intrusive possible;&lt;&#x2F;li&gt;
+&lt;li&gt;reusable to anyone, not only specific to my needs;&lt;&#x2F;li&gt;
+&lt;li&gt;avoid build system customization or dependency;&lt;&#x2F;li&gt;
+&lt;li&gt;linux and windows at least (macosx is a bonus);&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;br&#x2F;&gt;
+The first four points are related to user experience and the last one is a minimum expected from any meaningful public project.
+&lt;p&gt;Being simple and reusable comes with not being too intrusive and having a simple public API. If anyone other than me decide to use it, it should not require learning a lot of details of how it works nor requiring deep changes in existing code. But also, not requiring complex changes to existing building system or scripts to do some magic in the background.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;overview-and-usage&quot;&gt;Overview and Usage&lt;&#x2F;h3&gt;
+&lt;p&gt;Before implementing &lt;code&gt;cr.h&lt;&#x2F;code&gt;, I read everything I could find about how people deal with this and what the most frequent problems and issues. I will try to explain how my implementation differ from others and how I&#x27;ve solved some of the more common issues.&lt;&#x2F;p&gt;
+&lt;p&gt;The core of the system is really basic and do not differ from most of the home grown solutions. The idea is to split the code into a thin host application executable and the core of the program into a dynamically loadable binary (shared object or dll) guest.&lt;&#x2F;p&gt;
+&lt;p&gt;The less the host needs to know the better and easier it becomes. Ideally it should just be able to load the binary, monitor for new updates, unload the current one saving any required state then loading the new up-to-date binary and passing over the saved state, repeating the process until terminated by the user.&lt;&#x2F;p&gt;
+&lt;p&gt;The usage is really simple, the very first thing is to initialize the system with &lt;code&gt;cr_plugin_init&lt;&#x2F;code&gt;, a &lt;code&gt;cr_plugin&lt;&#x2F;code&gt; context and the fullpath to the loadable object (ie. a .so or .dll). Once initialized, the main function &lt;code&gt;cr_plugin_update&lt;&#x2F;code&gt; must be frequently called, as it will call the real application and it will deal with all the reloading and monitoring stuff. Finally, when the application wants to exit, &lt;code&gt;cr_plugin_close&lt;&#x2F;code&gt; will do all the required cleanup. This is all the public API when using &lt;code&gt;cr.h&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;cr_plugin&lt;&#x2F;code&gt; context contains some internal private stuff, but also some information useful to the application itself. One is the &lt;code&gt;version&lt;&#x2F;code&gt; field, a value incremented each time a reload is successful or decremented in case of a rollback. Rollbacks may happen when a crash or an issue is detected, the system will try to safely unload the problematic binary and reload a previous working one. In case of rollback, a &lt;code&gt;failure&lt;&#x2F;code&gt; code will be set in the plugin context and the new loaded binary may use this information to give some useful feedback or dealing with it in an appropriate fashion for the application.&lt;&#x2F;p&gt;
+&lt;p&gt;Once up and running, each time the loadable binary is rebuilt, &lt;code&gt;cr.h&lt;&#x2F;code&gt; will trigger a reload as it is monitoring for file changes based on the file time stamp. Each time an update, a load or an unload happens, &lt;code&gt;cr.h&lt;&#x2F;code&gt; will pass the info down to the application by using the &lt;code&gt;cr_op&lt;&#x2F;code&gt; operation flag: &lt;code&gt;CR_LOAD&lt;&#x2F;code&gt;, &lt;code&gt;CR_STEP&lt;&#x2F;code&gt; or &lt;code&gt;CR_UNLOAD&lt;&#x2F;code&gt;. For example, in case of unload the application may be able to intercept and deal with something before the binary is fully unloaded (like saving some internal state).&lt;&#x2F;p&gt;
+&lt;p&gt;This is everything needed to live code reload using &lt;code&gt;cr.h&lt;&#x2F;code&gt;!&lt;&#x2F;p&gt;
+&lt;p&gt;However, how does &lt;code&gt;cr.h&lt;&#x2F;code&gt; deal with the issues cited over the other articles about hot-reloading? How to manage state between reloads? What about the common PDB locking that people frequently have on windows? &lt;code&gt;cr.h&lt;&#x2F;code&gt; tries to solve these problems without any workaround or tricks with build systems.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;problem-pdb-lock&quot;&gt;Problem: PDB Lock&lt;&#x2F;h4&gt;
+&lt;p&gt;One recurring theme when doing hot-reloading on windows with a MSVC toolchain is the PDB lock while debugging. One instance of this issue can be seen &lt;a href=&quot;http:&#x2F;&#x2F;ourmachinery.com&#x2F;post&#x2F;dll-hot-reloading-in-theory-and-practice&#x2F;&quot;&gt;here&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;ourmachinery.com&#x2F;post&#x2F;little-machines-working-together-part-2&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;. These posts lists some possible solutions and problems with each solution, and it goes way down to trying to force unlock the file handles on windows as seen &lt;a href=&quot;https:&#x2F;&#x2F;blog.molecular-matters.com&#x2F;2017&#x2F;05&#x2F;09&#x2F;deleting-pdb-files-locked-by-visual-studio&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;cr.h&lt;&#x2F;code&gt; solves this in a pragmatic and simple way, first it starts by copying the &lt;code&gt;.dll&lt;&#x2F;code&gt; and the &lt;code&gt;.pdb&lt;&#x2F;code&gt; with a new versioned name and then we fix the real issue, that is not the file lock.&lt;&#x2F;p&gt;
+&lt;p&gt;When debugging, the debugger needs a way to find for the debug symbols, and in the MSVC toolchain this comes in the form of a second file, the &lt;code&gt;.pdb&lt;&#x2F;code&gt; that may exist elsewhere in the filesystem. So when generating the executable it will write the path to the matching PDB file inside the binary to be debugged. It literally contains the full path to the &lt;code&gt;.pdb&lt;&#x2F;code&gt; hardcoded inside it and the debugger will load this file causing a lock. You can check this yourself by doing a &lt;code&gt;strings&lt;&#x2F;code&gt; on the &lt;code&gt;.dll&lt;&#x2F;code&gt; or opening it with a hex editor and searching for the substring &lt;code&gt;.pdb&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The only thing needed to do to avoid the lock to happen, is to literally change this string to point to our own copy of &lt;code&gt;.pdb&lt;&#x2F;code&gt; and thus guaranteeing that the debugger will lock our copy and not the original file while debugging.&lt;&#x2F;p&gt;
+&lt;p&gt;This can be done the brute-force but brittle way (searching and replacing the string), or the right way by doing what the debugger does: correctly opening and parsing the binary structures and modifying it. There are a lot of documentation on the &lt;a href=&quot;https:&#x2F;&#x2F;msdn.microsoft.com&#x2F;en-us&#x2F;library&#x2F;ms809762.aspx&quot;&gt;Portable Executable format&lt;&#x2F;a&gt; and how to parse it, or more specifically on how to find the &lt;a href=&quot;http:&#x2F;&#x2F;www.debuginfo.com&#x2F;articles&#x2F;debuginfomatch.html&quot;&gt;debugging information&lt;&#x2F;a&gt; as reference for more details on the subject.&lt;&#x2F;p&gt;
+&lt;p&gt;With this simple solution we can debug and rebuild at the same time even during reloads, the debugger will find the correct debug info and be up-to-date with the current debugged binary as we modify it.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;problem-crashes&quot;&gt;Problem: Crashes&lt;&#x2F;h4&gt;
+&lt;p&gt;While live coding, the chances to introduce problems are high as we get into a faster development flow. So if we can avoid crashing due to erroneous code, it will help keeping with this faster flow. Hence, &lt;code&gt;cr.h&lt;&#x2F;code&gt; tries to be helpful and to detect crashes and safely continuing the execution from a previous working version. This system is not unbreakable as at the end we are dealing with C&#x2F;C++ and there are just too many ways to shoot yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;In practice, &lt;code&gt;cr.h&lt;&#x2F;code&gt; tries to emulate the debugger here too. On windows it will use &lt;a href=&quot;https:&#x2F;&#x2F;msdn.microsoft.com&#x2F;en-us&#x2F;library&#x2F;windows&#x2F;desktop&#x2F;ms680657(v=vs.85).aspx&quot;&gt;structured exception handling&lt;&#x2F;a&gt; to detect some common problems as illegal instruction, access violation and some others. In which case, &lt;code&gt;cr.h&lt;&#x2F;code&gt; will catch it and try to unload the problematic binary and revert back to the previous working one, effectively doing a rollback.
+Over Linux, the same happens but it is managed using the OS signal handlers.&lt;&#x2F;p&gt;
+&lt;p&gt;All this enables a seamsly development flow that is pleasing to use.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;problem-state-transfer&quot;&gt;Problem: State Transfer&lt;&#x2F;h4&gt;
+&lt;p&gt;A very common way to keep state between reload is to use the heap and pass pointers to objects so the host can hand it over the next reload. This requires that the plugin instances share the same allocator, it may be managed by the host or via a common crt (dynamic crt on MSVC). One limitation of this approach is with global and local static states.&lt;&#x2F;p&gt;
+&lt;p&gt;For the first case, using the heap model the user may decide to manage its own states by filling a struct with pointers to objects and handing it over so &lt;code&gt;cr.h&lt;&#x2F;code&gt; can hold it between reloads using the &lt;code&gt;userdata&lt;&#x2F;code&gt; pointer in the &lt;code&gt;cr_plugin&lt;&#x2F;code&gt; context. Other than the same allocator being required, care should be taken with destructors called during unload.&lt;&#x2F;p&gt;
+&lt;p&gt;The second case is when dealing with static state (both global and local), it would be really annoying and highly error prone to do it by hand like copying over to the heap and restoring (and dealing with a lot of issues this may cause). In this situation, &lt;code&gt;cr.h&lt;&#x2F;code&gt; will magically do all the hard work with all necessary static data tagged with a macro &lt;code&gt;CR_STATE&lt;&#x2F;code&gt;. These states will get saved and copied over to the newly loaded instance and everything will just work.. most of the time. The catch here is that depending on how much your binary changes, things may not work as we&#x27;re dealing with opaque memory copying and addresses that may change.&lt;&#x2F;p&gt;
+&lt;p&gt;Here some things to be aware when using &lt;code&gt;CR_STATE&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do not save objects that have pointers to anything that is not in the heap;&lt;&#x2F;li&gt;
+&lt;li&gt;Do not save objects that have non trivial constructors and destructors, they may or may not work;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;br&#x2F;&gt;
+All this is subject to change as I&#x27;ll be hardening it while using in my projects. I have some more ideas in the back of my mind on how to improve all this by using more debug info, but not sure if it is worth the effort. Enough yak shaving.
+&lt;h3 id=&quot;development-stats&quot;&gt;Development Stats&lt;&#x2F;h3&gt;
+&lt;p&gt;Finally, some approximated development time statistics (as my free time is mostly in spans of 30 minutes to 1h).&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Base implementation: 1h
+&lt;ul&gt;
+&lt;li&gt;Windows specific: 3h&lt;&#x2F;li&gt;
+&lt;li&gt;Linux specific: 4h&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Samples: 3h&lt;&#x2F;li&gt;
+&lt;li&gt;Tests: 2h&lt;&#x2F;li&gt;
+&lt;li&gt;Documentation: 2h&lt;&#x2F;li&gt;
+&lt;li&gt;This Post: 7h&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;br&#x2F;&gt;
+Total: 22h (5 weeks, ~4h&#x2F;week)
+&lt;h3 id=&quot;feedback&quot;&gt;Feedback&lt;&#x2F;h3&gt;
+&lt;p&gt;Please, post corrections and suggestions about this post by opening an issue &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fungos&#x2F;fungos.github.io&#x2F;issues&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;. Any help&#x2F;improvement is appreciated.&lt;&#x2F;p&gt;
+</description>
+            </item>
+        
+    </channel>
+</rss>

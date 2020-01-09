@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <!-- SEO -->
+        <title> fungos&#x27; home </title>
+
+        <!-- Enable responsiveness on mobile devices-->
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1" >
+
+        <!--  css -->
+        <link rel="stylesheet"  href="https:&#x2F;&#x2F;fungos.github.io/main.css" >
+
+        <!-- fonts -->
+        <!-- preload  -->
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway" as="style">
+        <link rel="preload"  href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" as="style" >
+        <!-- load -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      
+    </head>
+
+    <body>
+      
+        
+<input type="checkbox" id="openSidebarMenu" class="openSidebarMenu">
+<label class="menu cross menu--1" for="openSidebarMenu">
+    <svg viewBox="0 0 75 75" xmlns="https://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" />
+        <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35" />
+        <path class="line--2" d="M0 50h70" />
+        <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65" />
+    </svg>
+</label>
+
+<div id="sidebarMenu">
+    <div class="menu_wrapper">
+        <ul class="sidebarMenuInner">
+            <li>
+                <a href="https:&#x2F;&#x2F;fungos.github.io" >fungos&#x27; home</a>
+                <div class="menu_div" ></div>
+            </li>
+
+	    
+	    <li><a href="https:&#x2F;&#x2F;fungos.github.io&#x2F;about" >About</a></li>
+	    
+
+            
+            <li><a href="https://fungos.github.io" target="_blank">fungos.github.io</a></li>
+            
+            
+            <li><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
+            
+            
+            <li><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="https:&#x2F;&#x2F;fungos.github.io/rss.xml" target ="_blank">rss</a><i class="fas fa-rss" ></i></li>
+            
+        </ul>
+    </div>
+</div>
+
+      
+
+      
+<nav id="overlord" class="overlord" >
+  
+<figure class="mini_logo ">
+    <a href="https:&#x2F;&#x2F;fungos.github.io" style="background-image: url(https:&#x2F;&#x2F;fungos.github.io/logo.png)"></a>
+</figure>
+<h5>
+    <a href="https:&#x2F;&#x2F;fungos.github.io">fungos&#x27; home</a>
+</h5>
+
+</nav>
+
+<section class="post_container">
+  <article>
+    
+      <h1 class="article_title"><a href="https:&#x2F;&#x2F;fungos.github.io&#x2F;rust-windows-vscode&#x2F;" id="article_link">Setting Up a Rust Environment on Windows</a></h1>
+      
+<ul class="frontmatter frontmatter_page" id="frontmatter">
+    <li>
+        <time class="article_time"  datetime="2017-08-12">August 12, 2017</time>
+    </li>
+    <span class="dotDivider"></span>
+    <li> 2129 words </li>
+    <span class="dotDivider" ></span>
+    <li> 11 min </li>
+</ul>
+
+      <p>When I talk about Rust, one question that comes the most is about tooling and debugging. Online this can be seen a lot, mainly about debugging on Windows. </p>
+<p>So I've decided to write a little guide mostly to practice my written English and bootstrap this blog, but also to document the current steps needed to set a good Windows Rust environment.</p>
+<p>Be warned that it may miss some details or be too superficial for some people.</p>
+<p>The setup described here is the one I've been using Rust on Windows (and approximately equivalent on GNU/Linux) for some time and I believe it to be the ideal setup for myself, at least for the moment.</p>
+<p>I also believe that this setup is already better than current C or C++ (take it with a grain of salt anyway), first because of Cargo, but also due the recent improvements with <a href="https://github.com/rust-lang-nursery/rls">Rust Language Server (RLS)</a> and in part due to Rust use of LLVM and the compatibility with C ABI, it can piggyback on C/C++ tools like GDB, Valgrind, profilers and lots more. </p>
+<p>This makes setting up projects, developing and debugging a breeze if compared to C/C++, even if compared with Visual Studio and Visual Assist. Only Debugging is not as clean as debugging C code, its more like an equivalent of debugging a heavy STL C++ code base and some people may find this hard.</p>
+<p>I hope this may be helpfull in some way to these getting started with Rust on Windows.</p>
+<blockquote>
+<p>Note: My background is with C and C++, so I tend to compare things with these languages and probably use terminology from this background.</p>
+</blockquote>
+<h2 id="c-build-tools">C++ Build Tools</h2>
+<p>The first and most important thing to a working Rust environment is to have one C++ toolchain available so Rust can build C or C++ (&quot;-sys&quot;) crates and link against Windows libraries.</p>
+<p>This can be achieved in two ways:</p>
+<ul>
+<li>Having a Visual Studio C++ installation, or;</li>
+<li>Installing the smaller <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools">Visual C++ Build Tools</a> for a standalone toolchain;</li>
+</ul>
+<h2 id="rustup">Rustup</h2>
+<p>Rustup is the responsible for managing Rust compilers, Cargo, documentation, and so on. This tool is the entry point for a complete Rust environment and as Cargo, is a central part of Rust tooling.</p>
+<blockquote>
+<p>Note: To avoid any confusion with older Rust installations, if you'd already tried Rust before without Rustup, I suggest to uninstall everything (Rust, Cargo and anything related).</p>
+</blockquote>
+<p>Installing Rustup is straightforward, download it <a href="https://www.rustup.rs/">here</a> and then run it. A console window will launch as shown here:</p>
+<p><img src="/images/1/rustup-console.png" alt="rustup-init.exe" /></p>
+<p>Then go with the default installation (option 1). As shown in the screenshot, it will install a stable Rust for MSVC ABI.</p>
+<p>Or by command line:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup-init.exe -y
+</span></pre><h3 id="rust-toolchain">Rust Toolchain</h3>
+<p>With Rustup installed, most of the toolchain management is done in the command line with the Rustup command. Getting used to it will surely help in the future.</p>
+<p>First, lets update everything to be sure (required if it is not a fresh install):</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup update
+</span></pre>
+<p>Then, adding the nightly version of the compiler for trying experimental features and to be able to compile an useful tool (Clippy):</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup install nightly
+</span></pre><h3 id="rls-and-components">RLS and Components</h3>
+<p>RLS is essential and the main component, but it comes with its own requirements: the Rust source code, documentation and the analysis component.
+The source and documentation will be used by analysis component to feed RLS with required data about existing crates and code. Read more about what RLS can do <a href="http://www.ncameron.org/blog/what-the-rls-can-do/">here</a>.</p>
+<p>Basically, RLS enable auto-completion, documentation tooltips and related code editing features to any IDE supporting the Microsoft Language Server protocol. It is in a way equivalent to C++ Intellisense or Visual Assist. Although it is still under heavy development, I think it is already more usable than both of C++ alternatives on Visual Studio.</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup default nightly
+&gt; rustup component add rust-src
+&gt; rustup component add rust-docs
+&gt; rustup component add rust-analysis
+&gt; rustup component add rls-preview
+&gt; rustup update
+</span></pre>
+<blockquote>
+<p>Note: Both <code>rust-analysis</code> and <code>rls</code> can only be installed by using the nightly toolchain. Nightly can be set as the default toolchain or by passing the flag <code>--toolchain nightly</code> to the Rustup command line.</p>
+</blockquote>
+<h3 id="rustfmt">Rustfmt</h3>
+<p>Rustfmt will automatically format the code accordingly to the current code style standard. Opposed to languages as C or C++ where each code base has its own style, Rust (and for the matter, most recent languages) enforce a standard style on the code. You may think it is too intrusive, but it is better for everyone by the end. More information about styling can be found on rustfmt <a href="https://github.com/rust-lang-nursery/fmt-rfcs/blob/master/guide/guide.md">RFC repository</a>.</p>
+<p>To install it, suffice to use Cargo:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; cargo install rustfmt
+</span></pre>
+<p>It will be used by VSCode Rust Extension to automatically format Rust code being edited. </p>
+<blockquote>
+<p>Note: Rustfmt will be asked to be installed by Visual Studio Code if it isn't already installed anyway.</p>
+</blockquote>
+<p>But rustfmt is in active development and the recommended way is by using the nightly version:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup run nightly cargo install rustfmt-nightly
+</span></pre>
+<p>Now, formating code should be done by issuing the command bellow, indicating it uses the nightly toolchain otherwise and error loading its dependencies will happen:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; cargo +nightly fmt
+</span></pre><h3 id="clippy">Clippy</h3>
+<p>Clippy is another jewel of Rust, it is the second best friend (after Rust compiler) on helping learning Rust and improving the code. It is a linter that will catch issues and suggest improvements, it should be used regularly and will help learning some tricks and writing idiomatic code. The downside if we can say so is that it requires a nightly compiler to install/compile it.</p>
+<p>Again, to install, use Cargo (and be sure to have the nightly toolchain in use):</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; rustup run nightly cargo install clippy
+</span></pre>
+<blockquote>
+<p>Note: Installing these tools with cargo means compiling them, and Rust compile times are not really the best. So, go take a coffee.</p>
+</blockquote>
+<blockquote>
+<p>Note: Clippy will be asked to be installed by Visual Studio Code if it isn't already installed anyway.</p>
+</blockquote>
+<p>To check a Rust project using Clippy:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; cargo clippy
+</span></pre><h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>I've tried some different IDEs (take a look <a href="https://areweideyet.com/">here</a> for some alternatives and their current support state), but I believe VSCode (at the moment) is the best and most complete mostly due to the <a href="https://github.com/Microsoft/language-server-protocol">Language Server Protocol</a>/RLS. </p>
+<blockquote>
+<p>Note: The second best is <a href="https://intellij-rust.github.io/">IntelliJ Rust</a> and now it is <a href="https://blog.jetbrains.com/blog/2017/08/04/official-support-for-open-source-rust-plugin-for-intellij-idea-clion-and-other-jetbrains-ides/">officially supported by JetBrains</a>. The problem is that it is heavy. I wouldn't recommend it unless you're already have it. Also, it does not support debugging, but this is being worked on.</p>
+</blockquote>
+<p>Before configuring a Rust project in Visual Studio Code, some extensions are needed as these will help to edit code and debugging, and they're pretty much all it is needed to have a working Rust IDE.</p>
+<h3 id="extensions">Extensions</h3>
+<p>All VSCode extensions here may be installed via the Extensions Panel, or by using <code>CTRL+P</code> and typing <code>ext install &lt;name&gt;</code> or by command line:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; code --install-extension &lt;name&gt;
+</span></pre><h4 id="rust-rls">Rust (rls)</h4>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">Rust (rls)</a> is a new extension (the third Rust extension already) but is already very usable, also this is the official one by the Rust Tool Team and is being worked on actively.</p>
+<p>Extension name: <code>rust-lang.rust</code></p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; code --install-extension rust-lang.rust
+</span></pre><h4 id="c-c">C/C++</h4>
+<p>This extension is needed to be able to debug native binaries using GDB, LLDB or Visual Studio Debugger.</p>
+<p>Extension name: <code>ms-vscode.cpptools</code></p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; code --install-extension ms-vscode.cpptools
+</span></pre>
+<p>It will also download and install any required dependency.</p>
+<h4 id="native-debug">Native Debug</h4>
+<p>This one is not really needed, but I recommend use this to automatically enable VSCode to set breakpoints on Rust code. Otherwise, it would require tuning user settings (<code>CTRL+,</code>) and setting <code>debug.allowBreakpointsEverywhere</code>.</p>
+<p>Extension name: <code>webfreak.debug</code></p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">&gt; code --install-extension webfreak.debug
+</span></pre><h3 id="visualizers">Visualizers</h3>
+<blockquote>
+<p>Note: This section will soon be deprecated. A <a href="https://github.com/rust-lang/rust/pull/43221">recent commit</a> on Rust, is now embedding visualization information inside PDBs. This is already valid for Nightly toolchain, but Stable still requires this manual step.</p>
+</blockquote>
+<p>With Rust MSVC toolchain comes some type visualizers for Visual Studio Debugger (Natvis), these can be used to ease the visualization of some very few Rust types within the Debugger. Sadly, there are still limitations of what can be specified in a Natvis file.</p>
+<p>The downside is that the installation of the visualization files are a bit manual at the moment, so this is the hardest part of all the Rust environment setup.</p>
+<p>The files in question are in <code>%HOMEPATH%\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\etc</code> and must be copied to <code>%HOMEPATH%\.vscode\extensions\ms-vscode.cpptools-0.12.2\debugAdapters\vsdbg\bin\Visualizers</code> (note the version on ms-vscode.cpptools path, this can be different for your case).</p>
+<p>If a custom visualizer is needed, an entry <code>&quot;visualizerFile&quot;</code> can be set inside <code>launch.json</code> (environment variables can be referenced as <code>${env:VAR}</code>), so for example, one can set: <code>&quot;visualizerFile&quot;: &quot;${env:HOMEPATH}/.rustup/toolchains/stable-x86_64-pc-windows-msvc/lib/rustlib/etc/libcore.natvis&quot;</code>. For the moment, only one file can be used, an <a href="https://github.com/Microsoft/vscode-cpptools/issues/925">issue</a> is open to make it work with multiple files.</p>
+<h2 id="debugging">Debugging</h2>
+<p>Now that everything is in place, the last thing is configuring a Rust project to be debugged.</p>
+<p>Create a debug configuration by going to the <code>(1) Debug Panel</code>, then clicking on the <code>(2) Debug Configuration Dropdown</code> and then select <code>(3) C++ (Windows)</code> option as shown below:</p>
+<p><img src="/images/1/vscode-debug-cfg.png#center" alt="debug" /></p>
+<p><img src="/images/1/vscode-debug-msvc.png#center" alt="debug" /></p>
+<p>This will open a new file in the editor, called <code>launch.json</code> where all launch settings are managed.</p>
+<p>The initial contents of the file aren't good because VSCode does not know details about the loaded Rust project (and I don't believe extensions can do anything here to help with it, at least for the current version), so a little tweak is required.</p>
+<p>The current file should look as this:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+    &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.2.0</span><span style="color:#c0c5ce;">&quot;,
+    &quot;</span><span style="color:#a3be8c;">configurations</span><span style="color:#c0c5ce;">&quot;: [
+        {
+            &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">(Windows) Launch</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">type</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">cppvsdbg</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">request</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">launch</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">program</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">enter program name, for example ${workspaceRoot}/a.exe</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">args</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">stopAtEntry</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">,
+            &quot;</span><span style="color:#a3be8c;">cwd</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">${workspaceRoot}</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">environment</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">externalConsole</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">true
+        </span><span style="color:#c0c5ce;">}
+    ]
+}
+</span></pre>
+<p>Some important things to note here are the <code>type</code> and <code>program</code>.</p>
+<p>The <code>type</code> should specify <code>cppvsdbg</code> to use the MSVC Debugger and have Natvis support.</p>
+<p>The <code>program</code> here is the path to the executable generated by rustc/Cargo. When using Cargo, normally the debug executable will be found in a path as <code>&lt;project&gt;/target/debug/&lt;project&gt;.exe</code>. With this in mind, a good default should be to point the <code>program</code> to <code>${workspaceRoot}/target/debug/${workspaceRootFolderName}.exe</code>.</p>
+<p>My preferred <code>launch.json</code> is this:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#c0c5ce;">{
+    &quot;</span><span style="color:#a3be8c;">version</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">0.2.0</span><span style="color:#c0c5ce;">&quot;,
+    &quot;</span><span style="color:#a3be8c;">configurations</span><span style="color:#c0c5ce;">&quot;: [
+        {
+            &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">Debug</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">type</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">cppvsdbg</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">request</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">launch</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">program</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">${workspaceRoot}/target/debug/${workspaceRootFolderName}.exe</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">args</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">stopAtEntry</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">,
+            &quot;</span><span style="color:#a3be8c;">cwd</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">${workspaceRoot}</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">environment</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">externalConsole</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">true
+        </span><span style="color:#c0c5ce;">},
+        {
+            &quot;</span><span style="color:#a3be8c;">name</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">Release</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">type</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">cppvsdbg</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">request</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">launch</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">program</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">${workspaceRoot}/target/release/${workspaceRootFolderName}.exe</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">args</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">stopAtEntry</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">false</span><span style="color:#c0c5ce;">,
+            &quot;</span><span style="color:#a3be8c;">cwd</span><span style="color:#c0c5ce;">&quot;: &quot;</span><span style="color:#a3be8c;">${workspaceRoot}</span><span style="color:#c0c5ce;">&quot;,
+            &quot;</span><span style="color:#a3be8c;">environment</span><span style="color:#c0c5ce;">&quot;: [],
+            &quot;</span><span style="color:#a3be8c;">externalConsole</span><span style="color:#c0c5ce;">&quot;: </span><span style="color:#d08770;">true
+        </span><span style="color:#c0c5ce;">}
+    ]
+}
+</span></pre>
+<p>With this, a way to debug release binaries is already in hand if needed for some reason.</p>
+<h2 id="wishlist">Wishlist</h2>
+<p>The missing key step here would be to have a better integration from Rust Language Extension to manipulate/fix/generate <code>launch.json</code> for Rust projects or even better, a <code>cargo ide-setup &lt;ide&gt;</code> command or something similar, where <code>&lt;ide&gt;</code> could be <code>vscode</code>.</p>
+<p>This command would then be able to install the required vscode extensions if needed, and copy the natvis files to the right place, if in a windows environment.</p>
+<h3 id="rust-env-setup-script"><code>rust-env-setup</code> Script</h3>
+<p><a href="https://gist.github.com/fungos/5c94a2b7ed4a5b7ea4572e54c0c96a34">This</a> is a quick power shell script I hacked together in a gist for automatizing a working Rust environment with VSCode.</p>
+<blockquote>
+<p>Note: I'm not a PS guy, so do not take this for a solution.</p>
+</blockquote>
+<div class="gist">
+    <script src="https:&#x2F;&#x2F;gist.github.com&#x2F;fungos&#x2F;5c94a2b7ed4a5b7ea4572e54c0c96a34.js?file=rust-env-setup.ps1"></script>
+</div>
+<h2 id="feedback">Feedback</h2>
+<p>Help me improving this text by submitting fixes for wrong wording/phrasing or typos in <a href="https://github.com/fungos/fungos.github.io/issues">this repo issue tracker</a> or by commenting on twitter or elsewhere!</p>
+<h2 id="updates">Updates</h2>
+<ul>
+<li>Fixed script to consider the fresh VSCode 64bits. Thanks @colemickens (Reddit).</li>
+<li>Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).</li>
+<li>Added more information about how to add a natvis file into <code>launch.json</code> and mention that soon it will not be required, as it will be automatically embedded onto PDB files.</li>
+<li>Add information and fix typo. Closes <a href="https://github.com/fungos/fungos.github.io/issues/1">issue #1</a> by @TheCycoONE (Github).</li>
+<li>Update rustup rls component name to rls-preivew. Closes <a href="https://github.com/fungos/fungos.github.io/issues/2">issue #2</a> by @cbordeman  (Github).</li>
+</ul>
+
+      
+  </article>
+</section>
+
+       
+
+      <footer>
+        
+          
+<figure class="mini_logo ">
+    <a href="https:&#x2F;&#x2F;fungos.github.io" style="background-image: url(https:&#x2F;&#x2F;fungos.github.io/logo.png)"></a>
+</figure>
+<h5>
+    <a href="https:&#x2F;&#x2F;fungos.github.io">fungos&#x27; home</a>
+</h5>
+
+          
+<ul class="social_list foot_list" >
+    
+    <li class="button extra_small font_faint"><a href="https://fungos.github.io" target="_blank">fungos.github.io</a></li>
+    
+    
+    <li class="button extra_small font_faint"><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
+    
+    
+    <li class="button extra_small font_faint"><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+    
+    
+    
+    
+    
+    
+    <li class="button extra_small font_faint"><a href="https:&#x2F;&#x2F;fungos.github.io/rss.xml" target ="_blank">rss</a><i class="fas fa-rss" ></i></li>
+    
+</ul>
+
+        
+      </footer>
+    </body>
+</html>
