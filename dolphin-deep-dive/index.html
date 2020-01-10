@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <!-- SEO -->
+        <title> fungos&#x27; home </title>
+
+        <!-- Enable responsiveness on mobile devices-->
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1" >
+
+        <!--  css -->
+        <link rel="stylesheet"  href="https:&#x2F;&#x2F;fungos.github.io/main.css" >
+
+        <!-- fonts -->
+        <!-- preload  -->
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway" as="style">
+        <link rel="preload"  href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" as="style" >
+        <!-- load -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:200,300,300i,400,500,500i,600,700,800,900|Raleway">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      
+    </head>
+
+    <body>
+      
+        
+<input type="checkbox" id="openSidebarMenu" class="openSidebarMenu">
+<label class="menu cross menu--1" for="openSidebarMenu">
+    <svg viewBox="0 0 75 75" xmlns="https://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" />
+        <path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35" />
+        <path class="line--2" d="M0 50h70" />
+        <path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65" />
+    </svg>
+</label>
+
+<div id="sidebarMenu">
+    <div class="menu_wrapper">
+        <ul class="sidebarMenuInner">
+            <li>
+                <a href="https:&#x2F;&#x2F;fungos.github.io" >fungos&#x27; home</a>
+                <div class="menu_div" ></div>
+            </li>
+
+	    
+	    <li><a href="https:&#x2F;&#x2F;fungos.github.io&#x2F;about" >About</a></li>
+	    
+
+            
+            <li><a href="https://fungos.github.io" target="_blank">fungos.github.io</a></li>
+            
+            
+            <li><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
+            
+            
+            <li><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="https:&#x2F;&#x2F;fungos.github.io/rss.xml" target ="_blank">rss</a><i class="fas fa-rss" ></i></li>
+            
+        </ul>
+    </div>
+</div>
+
+      
+
+      
+<nav id="overlord" class="overlord" >
+  
+<figure class="mini_logo ">
+    <a href="https:&#x2F;&#x2F;fungos.github.io" style="background-image: url(https:&#x2F;&#x2F;fungos.github.io/logo.png)"></a>
+</figure>
+<h5>
+    <a href="https:&#x2F;&#x2F;fungos.github.io">fungos&#x27; home</a>
+</h5>
+
+</nav>
+
+<section class="post_container">
+  <article>
+    
+      <h1 class="article_title"><a href="https:&#x2F;&#x2F;fungos.github.io&#x2F;dolphin-deep-dive&#x2F;" id="article_link">A deep dive with Dolphin</a></h1>
+      
+<ul class="frontmatter frontmatter_page" id="frontmatter">
+    <li>
+        <time class="article_time"  datetime="2019-12-11">December 11, 2019</time>
+    </li>
+    <span class="dotDivider"></span>
+    <li> 3272 words </li>
+    <span class="dotDivider" ></span>
+    <li> 17 min </li>
+</ul>
+
+      <p>or, how systemd broke my file manager.</p>
+<h3 id="tl-dr">TL;DR</h3>
+<p><em>Systemd</em> broke my file manager and I lost about 4 hours investigating it. But I suffered less than
+if I was using Windows. Jump to the <a href="https://fungos.github.io/dolphin-deep-dive/#conclusion">conclusion</a> to see why.</p>
+<h3 id="a-bit-about-my-linux-background">A bit about my linux background</h3>
+<p>I'm a long time linux desktop user (since 1998) and other than a few times where I did adventure into
+linux internals (for learning, programming or for fun), I can't remember the last time I actually had to
+do it to solve anything.</p>
+<p>I did have moments where I had fun tuning my system for no sensible reason, including custom configured
+kernels with minor personal patches here and there. I also did have my Gentoo years where everything was
+statically built with custom compiler flags and tweaks for &quot;performance&quot;. </p>
+<p>As a system administrator, I did maintain some servers (as work and at home). But maybe in the last 10
+years my adventures on linux land where basically as a desktop user and the very few times where I needed
+to deal with services, my muscle memory for <em>init</em> always got me in trouble with <em>systemd</em>. I know almost 
+nothing about <em>systemd</em> and I have to <a href="https://duckduckgo.com/">ddg</a> it every time.</p>
+<p>Currently I use <a href="https://manjaro.org/">Manjaro Linux</a>, a distro based on <a href="https://www.archlinux.org/">Arch Linux</a>,
+and I've always been a <a href="https://kde.org/">KDE</a> user. And I know for a fact that <em>KDE</em> and <a href="https://www.qt.io/download-open-source">Qt</a>
+are some incredible and unique pieces of technology.</p>
+<p>Unfortunately I'm in a weird position where I'm required to use Windows professionally as I'm a game
+developer. ¯\_(ツ)_/¯</p>
+<p>In all my years as a home linux desktop user, I barely had any issues. Until recently.</p>
+<h3 id="what-is-this-about">What is this about</h3>
+<p>I decided to write this post to myself and to document my steps investigating a problem that have been
+occurring to me in the last few weeks, which I've been delaying to check. After reading the
+<a href="https://randomascii.wordpress.com/2019/12/08/on2-again-now-in-wmi/">O(n^2), again, now in WMI</a> post
+by <strong>Bruce Dawson</strong> on how he investigated and found the reason of multi-minute delays on his workstation,
+I thought &quot;why not try the same with my issue and see where this takes me? It could be interesting...&quot;. 
+Here is it, and I hope it is.</p>
+<blockquote>
+<p>As I work with windows and my work deal in part with performance optimizations and debugging,
+Bruce Dawson's blog is a must-read.</p>
+</blockquote>
+<h3 id="the-problem">The problem</h3>
+<p>I've been hit for a long delay opening <a href="https://kde.org/applications/system/org.kde.dolphin">Dolphin</a>
+(the <em>KDE</em>'s file manager) which could take up to one minute to show up. As being something essential
+as it is, this started to really annoy me and a bit of searching didn't reveal anything obvious but
+some similarly looking cases. I believe this started since my last distro update which was recent (2019-11).</p>
+<h3 id="taking-the-dive">Taking the dive</h3>
+<p>Even with similar <em>Dolphin</em> issues reported over different distros forums, I was unable to have any actual
+hints about my own issue. So I did go search directly into <em>KDE</em> bugzilla for some similarly looking bugs, but
+only a few had the same symptoms and not much more information. What most had in common was that the
+responder always asked for a backtrace, obviously. </p>
+<p>But before trying that, I did the simpler stuff first.
+Running <code>dolphin</code> directly from <em>Konsole</em> to see if some log output appears.</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> dolphin
+</span><span style="color:#bf616a;">QObject::connect:</span><span style="color:#c0c5ce;"> No such signal QDBusAbstractInterface::DeviceAdded(QString)
+</span><span style="color:#bf616a;">QObject::connect:</span><span style="color:#c0c5ce;"> No such signal QDBusAbstractInterface::DeviceRemoved(QString)
+</span><span style="color:#bf616a;">kf5.kio.core: </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Could not enter folder tags:/.</span><span style="color:#c0c5ce;">&quot;
+</span></pre>
+<p>this only reveals two signal/slot signature mismatch. This is the <em>Qt</em> way to tell
+that a callback <em>Dolphin</em> is trying to setup has a bad function signature somewhere, 
+which can cause some functionality to not work correctly.</p>
+<p>This also means that <em>Dolphin</em> try to listen when a device is added or removed using <code>QDBus</code>, which is <em>Qt</em>'s 
+interface to the <a href="https://www.freedesktop.org/wiki/Software/dbus/">dbus</a> system used for <a href="https://en.wikipedia.org/wiki/Inter-process_communication">inter-process communication</a>.</p>
+<p>My first reaction was to ask myself if it could be locked waiting a reply from some storage device?
+Let's see what <code>strace</code> has to say about it:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> strace dolphin
+&lt;lots </span><span style="color:#bf616a;">of</span><span style="color:#c0c5ce;"> output&gt;
+statx(AT_FDCWD, &quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span style="color:#c0c5ce;">&quot;, AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffc3c621890) = </span><span style="color:#bf616a;">-1</span><span style="color:#c0c5ce;"> ENOSYS (Function not implemented)
+</span><span style="color:#bf616a;">newfstatat</span><span style="color:#c0c5ce;">(AT_FDCWD, &quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span style="color:#c0c5ce;">&quot;, {st_mode=S_IFREG|0644, st_size=820, ...}, 0) = </span><span style="color:#bf616a;">0
+inotify_add_watch</span><span style="color:#c0c5ce;">(12, &quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span style="color:#c0c5ce;">&quot;, IN_MODIFY|</span><span style="color:#bf616a;">IN_ATTRIB</span><span style="color:#c0c5ce;">|</span><span style="color:#bf616a;">IN_MOVED_FROM</span><span style="color:#c0c5ce;">|</span><span style="color:#bf616a;">IN_MOVED_TO</span><span style="color:#c0c5ce;">|</span><span style="color:#bf616a;">IN_DELETE_SELF</span><span style="color:#c0c5ce;">|</span><span style="color:#bf616a;">IN_MOVE_SELF</span><span style="color:#c0c5ce;">) = </span><span style="color:#bf616a;">1
+access</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">/run/udev/control</span><span style="color:#c0c5ce;">&quot;, F_OK)       = </span><span style="color:#bf616a;">0
+socket</span><span style="color:#c0c5ce;">(AF_NETLINK, SOCK_RAW|</span><span style="color:#bf616a;">SOCK_CLOEXEC</span><span style="color:#c0c5ce;">|</span><span style="color:#bf616a;">SOCK_NONBLOCK,</span><span style="color:#c0c5ce;"> NETLINK_KOBJECT_UEVENT) = </span><span style="color:#bf616a;">14
+</span><span style="color:#8fa1b3;">getpid</span><span style="color:#c0c5ce;">()                                = 29328
+gettid()                                = 29328
+getrandom(&quot;</span><span style="color:#a3be8c;">\x0d\xd4\x7d\xd7\xce\xab\xa3\xb8\x3b\x75\x8a\x49\xa8\xd8\xe9\xb7</span><span style="color:#c0c5ce;">&quot;</span><span style="color:#bf616a;">,</span><span style="color:#c0c5ce;"> 16, GRND_NONBLOCK) = </span><span style="color:#bf616a;">16
+getrandom</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">\xcf\xfb\xfe\xd6\xf2\x00\x03\x4d\xbe\xa0\xbc\xb9\x4a\x4a\x52\xbb</span><span style="color:#c0c5ce;">&quot;, 16, GRND_NONBLOCK) = </span><span style="color:#bf616a;">16
+getrandom</span><span style="color:#c0c5ce;">(&quot;</span><span style="color:#a3be8c;">\xec\x43\xc1\x92\xa2\x3e\xcb\xfd\x5b\x34\x10\x54\xb2\x67\xf7\x25</span><span style="color:#c0c5ce;">&quot;, 16, GRND_NONBLOCK) = </span><span style="color:#bf616a;">16
+setsockopt</span><span style="color:#c0c5ce;">(14, SOL_SOCKET, SO_ATTACH_FILTER, {len=29, filter=0x7ffc3c620aa0}, 16) = </span><span style="color:#bf616a;">0
+setsockopt</span><span style="color:#c0c5ce;">(14, SOL_SOCKET, SO_PASSCRED, </span><span style="color:#b48ead;">[</span><span style="color:#c0c5ce;">1</span><span style="color:#b48ead;">]</span><span style="color:#c0c5ce;">, 4) = </span><span style="color:#bf616a;">0
+bind</span><span style="color:#c0c5ce;">(14, {sa_family=AF_NETLINK, nl_pid=0, nl_groups=0x000002}, 12) = </span><span style="color:#bf616a;">0
+getsockname</span><span style="color:#c0c5ce;">(14, {sa_family=AF_NETLINK, nl_pid=29328, nl_groups=0x000002}, </span><span style="color:#b48ead;">[</span><span style="color:#c0c5ce;">12</span><span style="color:#b48ead;">]</span><span style="color:#c0c5ce;">) = </span><span style="color:#bf616a;">0
+write</span><span style="color:#c0c5ce;">(5, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x7ffc3c6219d0, FUTEX_WAIT_PRIVATE, 0, NULL) = </span><span style="color:#bf616a;">0
+write</span><span style="color:#c0c5ce;">(5, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = </span><span style="color:#bf616a;">1
+futex</span><span style="color:#c0c5ce;">(0x7ffc3c6217d0, FUTEX_WAIT_PRIVATE, 0, NULL) = </span><span style="color:#bf616a;">-1</span><span style="color:#c0c5ce;"> EAGAIN (Resource temporarily unavailable)
+</span><span style="color:#bf616a;">write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x55e72722f180, FUTEX_WAIT_PRIVATE, 0, NULL) = </span><span style="color:#bf616a;">0
+futex</span><span style="color:#c0c5ce;">(0x55e72722f130, FUTEX_WAKE_PRIVATE, 1) = </span><span style="color:#bf616a;">0
+write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = </span><span style="color:#bf616a;">1
+futex</span><span style="color:#c0c5ce;">(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = </span><span style="color:#bf616a;">0
+write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = </span><span style="color:#bf616a;">1
+futex</span><span style="color:#c0c5ce;">(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = </span><span style="color:#bf616a;">-1</span><span style="color:#c0c5ce;"> EAGAIN (Resource temporarily unavailable)
+</span><span style="color:#bf616a;">write</span><span style="color:#c0c5ce;">(7, &quot;</span><span style="color:#a3be8c;">\1\0\0\0\0\0\0\0</span><span style="color:#c0c5ce;">&quot;, 8)         = </span><span style="color:#bf616a;">8
+futex</span><span style="color:#c0c5ce;">(0x55e72722ac90, FUTEX_WAIT_PRIVATE, 0, NULL^C) = </span><span style="color:#bf616a;">?</span><span style="color:#c0c5ce;"> ERESTARTSYS (To be restarted if SA_RESTART is set)
+&lt;delay, </span><span style="color:#bf616a;">ctrl+c</span><span style="color:#c0c5ce;">&gt;
+</span></pre>
+<p>This show us that we're waiting for something.
+Most of the output shows some communication happening between user-space and kernel-space, which could be <em>dbus</em> working.
+<em>futex</em> is a syscall for user space lock used for shared-memory synchronization, <em>IPC</em>, etc.</p>
+<p>Alright, so it is time to grab that backtrace. Lets launch within <em>GDB</em> and see what we can get from it. It may give some further hints at
+what exactly it is waiting for:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> gdb dolphin
+</span><span style="color:#bf616a;">GNU</span><span style="color:#c0c5ce;"> gdb (GDB) </span><span style="color:#bf616a;">8.3.1
+
+</span><span style="color:#c0c5ce;">&lt;...output...&gt;
+
+Reading </span><span style="color:#bf616a;">symbols</span><span style="color:#c0c5ce;"> from dolphin...
+(</span><span style="color:#bf616a;">No</span><span style="color:#c0c5ce;"> debugging symbols found in dolphin)
+(</span><span style="color:#bf616a;">gdb</span><span style="color:#c0c5ce;">) r
+</span><span style="color:#bf616a;">Starting</span><span style="color:#c0c5ce;"> program: /usr/bin/dolphin 
+</span><span style="color:#bf616a;">[Thread</span><span style="color:#c0c5ce;"> debugging using libthread_db enabled]
+</span><span style="color:#bf616a;">Using</span><span style="color:#c0c5ce;"> host libthread_db library &quot;</span><span style="color:#a3be8c;">/usr/lib/libthread_db.so.1</span><span style="color:#c0c5ce;">&quot;.
+</span><span style="color:#bf616a;">[New</span><span style="color:#c0c5ce;"> Thread 0x7fffefb45700 (LWP 31973)</span><span style="color:#bf616a;">]
+[New</span><span style="color:#c0c5ce;"> Thread 0x7fffeed96700 (LWP 31974)</span><span style="color:#bf616a;">]
+
+</span><span style="color:#c0c5ce;">&lt;wait </span><span style="color:#bf616a;">a</span><span style="color:#c0c5ce;"> bit and hit ctrl+c to get back at gdb&gt;
+^C
+</span><span style="color:#bf616a;">Thread</span><span style="color:#c0c5ce;"> 1 &quot;</span><span style="color:#a3be8c;">dolphin</span><span style="color:#c0c5ce;">&quot; received signal SIGINT, Interrupt.
+</span><span style="color:#bf616a;">0x00007ffff438ac45</span><span style="color:#c0c5ce;"> in pthread_cond_wait@@GLIBC_2.3.2 () </span><span style="color:#bf616a;">from</span><span style="color:#c0c5ce;"> /usr/lib/libpthread.so.0
+(</span><span style="color:#bf616a;">gdb</span><span style="color:#c0c5ce;">) bt
+</span><span style="color:#65737e;">#0  0x00007ffff438ac45 in pthread_cond_wait@@GLIBC_2.3.2 () from /usr/lib/libpthread.so.0
+#1  0x00007ffff5b3e610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from /usr/lib/libQt5Core.so.5
+#2  0x00007ffff5b3e702 in QWaitCondition::wait(QMutex*, unsigned long) () from /usr/lib/libQt5Core.so.5
+#3  0x00007ffff5ffd5cd in ?? () from /usr/lib/libQt5DBus.so.5
+#4  0x00007ffff5fadfa3 in ?? () from /usr/lib/libQt5DBus.so.5
+#5  0x00007ffff5fae7ce in ?? () from /usr/lib/libQt5DBus.so.5
+#6  0x00007ffff5fb9e1e in ?? () from /usr/lib/libQt5DBus.so.5
+#7  0x00007ffff5fb9f86 in QDBusInterface::QDBusInterface(QString const&amp;, QString const&amp;, QString const&amp;, QDBusConnection const&amp;, QObject*) () from /usr/lib/libQt5DBus.so.5
+#8  0x00007ffff753c8a7 in ?? () from /usr/lib/libKF5Solid.so.5
+#9  0x00007ffff74bf918 in ?? () from /usr/lib/libKF5Solid.so.5
+#10 0x00007ffff74c23ed in ?? () from /usr/lib/libKF5Solid.so.5
+#11 0x00007ffff74c2536 in ?? () from /usr/lib/libKF5Solid.so.5
+#12 0x00007ffff74c261b in Solid::DeviceNotifier::instance() () from /usr/lib/libKF5Solid.so.5
+#13 0x00007ffff74c0d69 in Solid::Device::Device(QString const&amp;) () from /usr/lib/libKF5Solid.so.5
+#14 0x00007ffff7b06e0c in ?? () from /usr/lib/libKF5KIOFileWidgets.so.5
+#15 0x00007ffff7b0e2ab in ?? () from /usr/lib/libKF5KIOFileWidgets.so.5
+#16 0x00007ffff7b0e3ed in ?? () from /usr/lib/libKF5KIOFileWidgets.so.5
+#17 0x00007ffff7b0fe73 in KFilePlacesModel::KFilePlacesModel(QString const&amp;, QObject*) () from /usr/lib/libKF5KIOFileWidgets.so.5
+#18 0x00007ffff7ee75dc in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#19 0x00007ffff7ee76fc in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#20 0x00007ffff7ee10f3 in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#21 0x00007ffff7ee89f3 in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#22 0x00007ffff7ee8c48 in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#23 0x00007ffff7eea934 in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#24 0x00007ffff7eeab7e in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#25 0x00007ffff7eeaf8f in ?? () from /usr/lib/libkdeinit5_dolphin.so
+#26 0x00007ffff7ecba55 in kdemain () from /usr/lib/libkdeinit5_dolphin.so
+#27 0x00007ffff7ceb153 in __libc_start_main () from /usr/lib/libc.so.6
+#28 0x000055555555505e in _start ()
+</span><span style="color:#c0c5ce;">(gdb) 
+</span></pre>
+<p>Oh well, not much useful right? No debug symbols available, but at least we can see a few more
+interesting things there.</p>
+<ol>
+<li>Looks like <em>Dolphin</em> is trying to create a <code>KFilePlacesModel</code>;</li>
+<li><em>Dolphin</em> handed the work over to something called <em>Solid</em> in a <em>libKF5Solid</em>;</li>
+<li>which is creating a <code>DeviceNotifier</code> instance;</li>
+<li>We're in fact inside a wait condition inside <code>QDBusInterface</code> call;</li>
+</ol>
+<p>Still not much useful, but looks like while <em>Dolphin</em> is booting up it will fill the UI <em>FilePlaces</em> with <em>Devices</em>.
+This is the left side panel in <em>Dolphin</em>, where it will show your favorite places and storage devices.
+It kind of makes sense, <em>Dolphin</em> needs to query which devices are available to show up, so maybe I 
+have a faulty device that is locking on a <em>dbus</em> query?</p>
+<p>With these new information, I checked my storage and any network shares via <em>Konsole</em>, but everything
+looked fine and working.</p>
+<p>My next step would be to try to have more information on the stack trace and if I was lucky it could
+tell me at least which kind of device I was having problem with.</p>
+<p>I looked around my distro for KDE's debug symbols and couldn't find where or if they are available.
+Luckily linux, <em>KDE</em>, <em>Qt</em>, etc. are open source, it would <em>only</em> need to get to build it myself. :)</p>
+<h2 id="intermission-c-and-c-build-systems-trauma">Intermission: C and C++ build systems trauma</h2>
+<p>At this moment I was cold sweating and thinking where this would take me and if it wouldn't be better
+to turn back and accept that one minute loading was my new reality until... the next update?</p>
+<p>I was burnt out because just one week before I was trying to get a <a href="https://www.gtk.org/">GTK</a> <a href="https://github.com/Microsoft/vcpkg">vcpkg</a>
+port up-to-date <strong>on linux</strong> and failed miserably. Previously <em>GTK</em> was using <em>Makefiles</em>, but they 
+migrated in recent versions to an even worse thing called <em>Meson</em>. Which basically made everything 
+way more complicated than the normal C build system story already is.</p>
+<p>Logically, if building <em>GTK</em> was hard then building an entire desktop environment like <em>KDE</em> would
+be a lot harder right?</p>
+<p>Luckily the people at <em>KDE</em> (and <em>Qt</em>) decided to use <em>CMake</em> as their build system and did a nice 
+bootstrap setup. It is not perfect and other than a minor <em>perl</em> hiccup, everything worked like a charm!</p>
+<blockquote>
+<p>If you're curious, check the <em>KDE</em> <a href="https://community.kde.org/Get_Involved/development#One-time_setup:_your_development_environment">build instructions</a>.</p>
+</blockquote>
+<p>Seriously, <em>CMake</em> is not perfect but if you don't use it you're making things worse for <strong>everyone</strong>.</p>
+<p>The build itself was long (I believe about ~1h as I didn't time it) to get <code>dolphin</code> and <code>kio</code> ready.</p>
+<h2 id="debug-symbols-the-solution">Debug symbols, the solution?</h2>
+<p>With a freshly build <em>Dolphin</em> with debug symbols ready, what can <em>GDB</em> reveal?</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> source </span><span style="color:#bf616a;">~</span><span style="color:#c0c5ce;">/kde/build/kio/prefix.sh
+</span><span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> gdb </span><span style="color:#bf616a;">~</span><span style="color:#c0c5ce;">/kde/usr/bin/dolphin
+</span><span style="color:#bf616a;">GNU</span><span style="color:#c0c5ce;"> gdb (GDB) </span><span style="color:#bf616a;">8.3.1
+
+</span><span style="color:#c0c5ce;">&lt;...output...&gt;
+
+Reading </span><span style="color:#bf616a;">symbols</span><span style="color:#c0c5ce;"> from /home/fungos/kde/usr/bin/dolphin...
+(</span><span style="color:#bf616a;">gdb</span><span style="color:#c0c5ce;">) r
+</span><span style="color:#bf616a;">Starting</span><span style="color:#c0c5ce;"> program: /home/fungos/kde/usr/bin/dolphin 
+</span><span style="color:#bf616a;">[Thread</span><span style="color:#c0c5ce;"> debugging using libthread_db enabled]
+</span><span style="color:#bf616a;">Using</span><span style="color:#c0c5ce;"> host libthread_db library &quot;</span><span style="color:#a3be8c;">/usr/lib/libthread_db.so.1</span><span style="color:#c0c5ce;">&quot;.
+</span><span style="color:#bf616a;">[New</span><span style="color:#c0c5ce;"> Thread 0x7fffef0c7700 (LWP 2812)</span><span style="color:#bf616a;">]
+[New</span><span style="color:#c0c5ce;"> Thread 0x7fffee51e700 (LWP 2813)</span><span style="color:#bf616a;">]
+
+</span><span style="color:#c0c5ce;">&lt;wait </span><span style="color:#bf616a;">a</span><span style="color:#c0c5ce;"> bit and hit ctrl+c to get back at gdb&gt;
+^C
+</span><span style="color:#bf616a;">Thread</span><span style="color:#c0c5ce;"> 1 &quot;</span><span style="color:#a3be8c;">dolphin</span><span style="color:#c0c5ce;">&quot; received signal SIGINT, Interrupt.
+</span><span style="color:#bf616a;">0x00007ffff4beac45</span><span style="color:#c0c5ce;"> in pthread_cond_wait@@GLIBC_2.3.2 () </span><span style="color:#bf616a;">from</span><span style="color:#c0c5ce;"> /usr/lib/libpthread.so.0
+(</span><span style="color:#bf616a;">gdb</span><span style="color:#c0c5ce;">) bt
+</span><span style="color:#65737e;">#0  0x00007ffff4beac45 in pthread_cond_wait@@GLIBC_2.3.2 () from /usr/lib/libpthread.so.0
+#1  0x00007ffff562b610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from /usr/lib/libQt5Core.so.5
+#2  0x00007ffff562b702 in QWaitCondition::wait(QMutex*, unsigned long) () from /usr/lib/libQt5Core.so.5
+#3  0x00007ffff68f25cd in ?? () from /usr/lib/libQt5DBus.so.5
+#4  0x00007ffff68a2fa3 in ?? () from /usr/lib/libQt5DBus.so.5
+#5  0x00007ffff68a37ce in ?? () from /usr/lib/libQt5DBus.so.5
+#6  0x00007ffff68aee1e in ?? () from /usr/lib/libQt5DBus.so.5
+#7  0x00007ffff68aef86 in QDBusInterface::QDBusInterface(QString const&amp;, QString const&amp;, QString const&amp;, QDBusConnection const&amp;, QObject*) () from /usr/lib/libQt5DBus.so.5
+#8  0x00007ffff6c81468 in Solid::Backends::UPower::UPowerManager::UPowerManager (this=0x555555946340, parent=0x0) at /home/fungos/kde/src/solid/src/solid/devices/backends/upower/upowermanager.cpp:41
+#9  0x00007ffff6c293f1 in Solid::ManagerBasePrivate::loadBackends (this=0x555555944060) at /home/fungos/kde/src/solid/src/solid/devices/managerbase.cpp:90
+#10 0x00007ffff6c2d6d2 in Solid::DeviceManagerPrivate::DeviceManagerPrivate (this=0x555555944050) at /home/fungos/kde/src/solid/src/solid/devices/frontend/devicemanager.cpp:38
+#11 0x00007ffff6c2ecaf in Solid::DeviceManagerStorage::ensureManagerCreated (this=0x7ffff6cd354c &lt;(anonymous namespace)::Q_QGS_globalDeviceStorage::innerFunction()::holder&gt;)
+</span><span style="color:#c0c5ce;">    at /home/fungos/kde/src/solid/src/solid/devices/frontend/devicemanager.cpp:301
+</span><span style="color:#65737e;">#12 0x00007ffff6c2ec62 in Solid::DeviceManagerStorage::notifier (this=0x7ffff6cd354c &lt;(anonymous namespace)::Q_QGS_globalDeviceStorage::innerFunction()::holder&gt;)
+</span><span style="color:#c0c5ce;">    at /home/fungos/kde/src/solid/src/solid/devices/frontend/devicemanager.cpp:294
+</span><span style="color:#65737e;">#13 0x00007ffff6c2e5da in Solid::DeviceNotifier::instance () at /home/fungos/kde/src/solid/src/solid/devices/frontend/devicemanager.cpp:182
+#14 0x00007ffff6c2ae85 in Solid::Device::Device (this=0x555555697cb0, udi=...) at /home/fungos/kde/src/solid/src/solid/devices/frontend/device.cpp:59
+#15 0x00007ffff7bece5e in KFilePlacesItem::KFilePlacesItem (this=0x555555697c80, manager=0x5555559dc5d0, address=..., udi=...) at /home/fungos/kde/src/kio/src/filewidgets/kfileplacesitem.cpp:48
+#16 0x00007ffff7bf670d in KFilePlacesModel::Private::loadBookmarkList (this=0x5555556cbb00) at /home/fungos/kde/src/kio/src/filewidgets/kfileplacesmodel.cpp:764
+#17 0x00007ffff7bf559d in KFilePlacesModel::Private::_k_reloadBookmarks (this=0x5555556cbb00) at /home/fungos/kde/src/kio/src/filewidgets/kfileplacesmodel.cpp:650
+#18 0x00007ffff7bf443c in KFilePlacesModel::KFilePlacesModel (this=0x5555559f2070, alternativeApplicationName=..., parent=0x0) at /home/fungos/kde/src/kio/src/filewidgets/kfileplacesmodel.cpp:403
+#19 0x00007ffff7ef7564 in DolphinPlacesModelSingleton::DolphinPlacesModelSingleton (this=0x7ffff7fcadb8 &lt;DolphinPlacesModelSingleton::instance()::s_self&gt;) at /home/fungos/kde/src/dolphin/src/dolphinplacesmodelsingleton.cpp:26
+#20 0x00007ffff7ef75f5 in DolphinPlacesModelSingleton::instance () at /home/fungos/kde/src/dolphin/src/dolphinplacesmodelsingleton.cpp:33
+#21 0x00007ffff7eea8fe in DolphinViewContainer::DolphinViewContainer (this=0x5555559e4540, url=..., parent=0x5555559e8310) at /home/fungos/kde/src/dolphin/src/dolphinviewcontainer.cpp:96
+#22 0x00007ffff7ef9a92 in DolphinTabPage::createViewContainer (this=0x55555594c6a0, url=...) at /home/fungos/kde/src/dolphin/src/dolphintabpage.cpp:370
+#23 0x00007ffff7ef85e2 in DolphinTabPage::DolphinTabPage (this=0x55555594c6a0, primaryUrl=..., secondaryUrl=..., parent=0x55555566ff60) at /home/fungos/kde/src/dolphin/src/dolphintabpage.cpp:43
+#24 0x00007ffff7efb432 in DolphinTabWidget::openNewTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=..., tabPlacement=DolphinTabWidget::AfterLastTab) at /home/fungos/kde/src/dolphin/src/dolphintabwidget.cpp:171
+#25 0x00007ffff7efb3b0 in DolphinTabWidget::openNewActivatedTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=...) at /home/fungos/kde/src/dolphin/src/dolphintabwidget.cpp:163
+#26 0x00007ffff7efb7cc in DolphinTabWidget::openDirectories (this=0x55555566ff60, dirs=..., splitView=false) at /home/fungos/kde/src/dolphin/src/dolphintabwidget.cpp:215
+#27 0x00007ffff7ec7c90 in DolphinMainWindow::openDirectories (this=0x555555631210, dirs=..., splitView=false) at /home/fungos/kde/src/dolphin/src/dolphinmainwindow.cpp:221
+#28 0x00007ffff7ec4821 in kdemain (argc=1, argv=0x7fffffffdcf8) at /home/fungos/kde/src/dolphin/src/main.cpp:171
+#29 0x000055555555517b in main (argc=1, argv=0x7fffffffdcf8) at /home/fungos/kde/build/dolphin/src/dolphin_dummy.cpp:3
+</span><span style="color:#c0c5ce;">(gdb) 
+</span></pre>
+<p>Now we have a nice stack. This reveals a lot of stuff we missed in the first try, mostly are uninsteresting details.
+The real nice thing there is that now we know <em>which</em> device is being queried via <em>dbus</em>, which is...<em>UPower</em>?
+Wait, what is happening here? <strong>WHY</strong> <em>Dolphin</em> would try to query some <em>power</em> related device white querying
+up storage stuff?</p>
+<p>Let's take a step back.
+We never asked ourselves what is this <em>Solid</em> thing. Searching about it leads to <a href="https://techbase.kde.org/Development/Tutorials/Solid/Introduction">Solid page</a>
+on <em>KDE TechBase</em> wiki. That page explains that <em>Solid</em> is a kind of <em>Hardware Discovery Layer</em> and 
+some features it provides is <em>Listing Devices</em>. In this page there is a tutorial on how your program
+can use it, but mostly important, there is information about a <code>solid-hardware</code> tool to use on command line.</p>
+<p>Lets try it:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> solid-hardware list
+</span><span style="color:#bf616a;">Object::connect:</span><span style="color:#c0c5ce;"> No such signal QDBusAbstractInterface::DeviceAdded(QString)
+</span><span style="color:#bf616a;">Object::connect:</span><span style="color:#c0c5ce;"> No such signal QDBusAbstractInterface::DeviceRemoved(QString)
+</span><span style="color:#bf616a;">virtual</span><span style="color:#c0c5ce;"> QStringList Solid::Backends::UPower::UPowerManager::allDevices()  </span><span style="color:#bf616a;">error:  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">org.freedesktop.DBus.Error.TimedOut</span><span style="color:#c0c5ce;">&quot; 
+</span><span style="color:#bf616a;">udi</span><span style="color:#c0c5ce;"> = &#39;</span><span style="color:#a3be8c;">/org/kde/solid/udev/sys/devices/LNXSYSTM:00/LNXPWRBN:00/input/input5</span><span style="color:#c0c5ce;">&#39;
+&lt;a </span><span style="color:#bf616a;">lot</span><span style="color:#c0c5ce;"> of other devices&gt;
+</span></pre>
+<p>BINGO?
+Surely it had the exact same delay as <em>Dolphin</em> before any output was shown and then as soon as it unblocked
+I got the same output messages about unknown signals and a new interesting error about <em>UPower dbus</em>
+timeout error.</p>
+<p>Checking again the stack trace we see that <em>Solid</em> device manager frontend will request to <code>loadBackends()</code>
+in <code>ManagerBasePrivate</code>, which in turn <a href="https://cgit.kde.org/solid.git/tree/src/solid/devices/managerbase.cpp?id=e33da0b273312877770d14ee9b6906acfacba8d0#n65">process all kind of backends</a> 
+indiscriminately as it is agnostic about its clients intentions.</p>
+<p>Now we know that:</p>
+<ol>
+<li><em>Dolphin</em> needs to query storage devices using <em>Solid</em>;</li>
+<li><em>Solid</em> loads all kind of backends independenty of <em>Dolphin</em> real needs;</li>
+<li>When a backend loads it will query <em>dbus</em> in some or another way;</li>
+<li><em>UPower</em> debus service is timing out;</li>
+<li><em>Solid</em> blocks and in turn <em>Dolphin</em> waits until the timeout fire to continue working;</li>
+</ol>
+<p>So what is <a href="https://upower.freedesktop.org/">UPower</a>? It seems to be an(other) abstraction layer to 
+deal with hardware power management and it seems to be in part responsable to manage suspending and
+waking up things.</p>
+<p>So why does it timeout? <code>man upower</code> gives a few options, lets try some commands and see what we get:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> upower</span><span style="color:#bf616a;"> -e
+
+</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">upower:10725</span><span style="color:#c0c5ce;">): UPower-WARNING **: 21:04:33.690: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Timeout was reached
+
+</span><span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> upower</span><span style="color:#bf616a;"> --monitor
+
+</span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">upower:6427</span><span style="color:#c0c5ce;">): UPower-WARNING **: 22:22:36.230: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Failed to activate service &#39;</span><span style="color:#a3be8c;">org.freedesktop.UPower</span><span style="color:#c0c5ce;">&#39;: timed out (service_start_timeout=25000ms)
+</span></pre>
+<p>Sure. So <em>upowerd</em> daemon is unreachable for some reason. If we ask <em>systemd</em> to start it:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> sudo systemctl start upower
+</span><span style="color:#bf616a;">Job</span><span style="color:#c0c5ce;"> for upower.service failed because the control process exited with error code.
+</span><span style="color:#bf616a;">See </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">systemctl status upower.service</span><span style="color:#c0c5ce;">&quot; and &quot;</span><span style="color:#a3be8c;">journalctl -xe</span><span style="color:#c0c5ce;">&quot; for details.
+</span></pre>
+<p><code>journalctl</code> doesn't say much useful, only that we got an <code>exit code 217</code>.
+And this link to <a href="https://forum.manjaro.org/c/technical-issues-and-assistance">Support</a>.</p>
+<p>But if we launch <code>upowerd</code> service ourselves, it works:</p>
+<pre style="background-color:#2b303b;">
+<span style="color:#bf616a;">➜  ~</span><span style="color:#c0c5ce;"> sudo /usr/lib/upowerd</span><span style="color:#bf616a;"> --verbose
+[sudo]</span><span style="color:#c0c5ce;"> password for fungos: 
+</span><span style="color:#bf616a;">TI:21:05:00</span><span style="color:#c0c5ce;">     Acquired inhibitor lock (7)
+</span><span style="color:#bf616a;">TI:21:05:00</span><span style="color:#c0c5ce;">     Starting upowerd version 0.99.11
+</span></pre>
+<p>And magically <em>Dolphin</em> becomes alive again and we can confirm with <code>solid-hardware list</code>.</p>
+<p>Great, at least we have a workaround! And we know that the problem is actually <em>systemd</em>.
+Now we have two questions to answer:</p>
+<ol>
+<li>Why <em>systemd</em> is unable to start it?</li>
+<li>How to correctly fix this?</li>
+</ol>
+<p>Going to support link from <em>systemd</em> journal output and searching for <em>upower</em> brings us to
+this <a href="https://forum.manjaro.org/t/upower-daemon-failed-to-start/108539">question</a>. Which is basically
+the issue I was having.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>A <em>systemd</em> <a href="https://github.com/systemd/systemd/blob/v243/README#L77">change</a> that makes use of a kernel 
+feature unsupported on my kernel <code>4.9.202</code> broke my file manager.</p>
+<p>Manjaro delivered a <em>systemd</em> upgrade without <strong>enforcing</strong> a minimal kernel version. 
+In Manjaro defense, they clearly stated this on their changelog, but we shouldn't expect people to 
+read it.</p>
+<p>This made me realize that I really need to update my kernel as it is 2 years old already.
+And, that I have a lot less issues with linux than with Windows on my daily work, take that Microsoft.</p>
+<p>Now an upgrade to <code>5.4</code> is required, see you soon...</p>
+<h3 id="epilogue-5-minutes-later">Epilogue (...5 minutes later)</h3>
+<p>... and it is done. After all this I'm up and running on <code>5.4</code> and most importantly, <em>Dolphin</em> is 
+alive.</p>
+
+      
+  </article>
+</section>
+
+       
+
+      <footer>
+        
+          
+<figure class="mini_logo ">
+    <a href="https:&#x2F;&#x2F;fungos.github.io" style="background-image: url(https:&#x2F;&#x2F;fungos.github.io/logo.png)"></a>
+</figure>
+<h5>
+    <a href="https:&#x2F;&#x2F;fungos.github.io">fungos&#x27; home</a>
+</h5>
+
+          
+<ul class="social_list foot_list" >
+    
+    <li class="button extra_small font_faint"><a href="https://fungos.github.io" target="_blank">fungos.github.io</a></li>
+    
+    
+    <li class="button extra_small font_faint"><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
+    
+    
+    <li class="button extra_small font_faint"><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+    
+    
+    
+    
+    
+    
+    <li class="button extra_small font_faint"><a href="https:&#x2F;&#x2F;fungos.github.io/rss.xml" target ="_blank">rss</a><i class="fas fa-rss" ></i></li>
+    
+</ul>
+
+        
+      </footer>
+    </body>
+</html>

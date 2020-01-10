@@ -24,6 +24,11 @@
         </url>
     
         <url>
+            <loc>https://fungos.github.io/categories/linux/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://fungos.github.io/categories/programming/</loc>
             
         </url>
@@ -32,6 +37,13 @@
             <loc>https://fungos.github.io/cr-simple-c-hot-reload/</loc>
             
                 <lastmod>2017-11-20</lastmod>
+            
+        </url>
+    
+        <url>
+            <loc>https://fungos.github.io/dolphin-deep-dive/</loc>
+            
+                <lastmod>2019-12-11</lastmod>
             
         </url>
     
@@ -58,12 +70,27 @@
         </url>
     
         <url>
+            <loc>https://fungos.github.io/tags/linux/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://fungos.github.io/tags/live/</loc>
             
         </url>
     
         <url>
+            <loc>https://fungos.github.io/tags/manjaro/</loc>
+            
+        </url>
+    
+        <url>
             <loc>https://fungos.github.io/tags/reload/</loc>
+            
+        </url>
+    
+        <url>
+            <loc>https://fungos.github.io/tags/systemd/</loc>
             
         </url>
     
