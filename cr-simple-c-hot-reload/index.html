@@ -56,10 +56,12 @@
             <li><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
             
             
-            <li><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+            <li><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
             
             
             
+            
+            <li><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
             
             
             
@@ -101,7 +103,7 @@
       <p>Recently I've been back to hobby coding simple C stuff, and one project that I'm doing with a friend tries to simple emulate some old game. The idea is really basic, but we want to do it in the C-style without over engineering or losing track of the hobby feeling.</p>
 <p>But! It is really hard to not care at least a bit, even if it is just hobby stuff. I got literally side-tracked at one point and here I describe why and the resulting product of this.</p>
 <p><img src="https://camo.githubusercontent.com/08a269b19513df8325a177ff96e4e387f36b5bbf/68747470733a2f2f692e696d6775722e636f6d2f4e7136733047502e676966" alt="ImGui with cr.h" /></p>
-<h2 id="the-problem">The &quot;Problem&quot;</h2>
+<h2 id="the-problem">The "Problem"</h2>
 <p>While prototyping a functionality in this project, I wanted to be able to quickly iterate trying some ideas. My first reaction was that having a scripting language from the start would be a benefit for testing out ideas in a fast-paced way, but at the same time that would easily get in the way (by requiring bindings and maintenance) considering the time available for some hobby coding. On the other side, something that wouldn't get in the way would be doing it in a way as close as possible of the C and with less boilerplate possible, helping us keep the focus on the project itself.</p>
 <p>If what we wanted is something close to C, it could be done in at least two ways:</p>
 <ul>
@@ -118,7 +120,7 @@ Independent of which way we decided to go with, I had already some expectations 
 <li>independent of build system and not requiring custom build steps or anything;</li>
 <li>closest possible to the C-family syntax (ie. Lua was a big NO);</li>
 </ul>
-<h2 id="the-options">The &quot;Options&quot;</h2>
+<h2 id="the-options">The "Options"</h2>
 <p>I've checked some scripting languages and none of them fit most of the listed requirements. The better ones are slow or complex and the faster ones (as Lua) have annoying syntax. I mostly based my evaluation on <a href="https://github.com/r-lyeh/scriptorium">this</a> very nice listing with some benchmarks and code samples.</p>
 <p>In the other hand, creating a kind of C script is not that simple, it requires much more code to achieve something usable than integrating some ready-to-use scripting language. There is a bunch of libraries and tools that can help, like embedding a simple compiler as <a href="https://bellard.org/tcc/">TCC</a> or one complex as <a href="https://clang.llvm.org/docs/Tooling.html">libclang/libtooling</a>, or even maybe something that already embedded the compiler for us, as <a href="https://github.com/anael-seghezzi/CToy">C-Toy</a> or <a href="https://root.cern.ch/cint">CINT</a>. But that adds a lot of dependency code, requires too much fiddling with build systems, still requires writing bindings and aren't really <em>easy to use</em>.</p>
 <p>The other option would be doing hot-reloading of the runtime code as we change it. Even if this may appear complex, it is at least not as complex as to write a simple language. One downside is that opposed to scripts, this area does not have much public content in both articles and source code forms. Luckily enough, this idea fits with my concept of hobby stuff and is doable in my free time.</p>
@@ -215,10 +217,12 @@ Total: 22h (5 weeks, ~4h/week)
     <li class="button extra_small font_faint"><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
     
     
-    <li class="button extra_small font_faint"><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+    <li class="button extra_small font_faint"><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
     
     
     
+    
+    <li class="button extra_small font_faint"><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
     
     
     
@@ -228,7 +232,7 @@ Total: 22h (5 weeks, ~4h/week)
 
         
       </footer>
-      
+
     <script>
     (function() {
         var script = document.createElement('script');

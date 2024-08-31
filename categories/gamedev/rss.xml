@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>fungos&#x27; home</title>
-        <link>https://fungos.github.io</link>
-        <description>a bit of anything</description>
-        <generator>Zola</generator>
-        <language>en</language>
-        <atom:link href="https://fungos.github.io/categories/gamedev/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
-        
-            <item>
-                <title>cr.h: A Simple C Hot Reload Header-only Library</title>
-                <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-                <link>https://fungos.github.io/cr-simple-c-hot-reload/</link>
-                <guid>https://fungos.github.io/cr-simple-c-hot-reload/</guid>
-                <description>&lt;p&gt;Recently I&#x27;ve been back to hobby coding simple C stuff, and one project that I&#x27;m doing with a friend tries to simple emulate some old game. The idea is really basic, but we want to do it in the C-style without over engineering or losing track of the hobby feeling.&lt;&#x2F;p&gt;
+      <title>fungos&#x27; home - gamedev</title>
+      <link>https://fungos.github.io</link>
+      <description>:shrug:</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://fungos.github.io/categories/gamedev/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Mon, 20 Nov 2017 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>cr.h: A Simple C Hot Reload Header-only Library</title>
+          <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://fungos.github.io/cr-simple-c-hot-reload/</link>
+          <guid>https://fungos.github.io/cr-simple-c-hot-reload/</guid>
+          <description xml:base="https://fungos.github.io/cr-simple-c-hot-reload/">&lt;p&gt;Recently I&#x27;ve been back to hobby coding simple C stuff, and one project that I&#x27;m doing with a friend tries to simple emulate some old game. The idea is really basic, but we want to do it in the C-style without over engineering or losing track of the hobby feeling.&lt;&#x2F;p&gt;
 &lt;p&gt;But! It is really hard to not care at least a bit, even if it is just hobby stuff. I got literally side-tracked at one point and here I describe why and the resulting product of this.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;camo.githubusercontent.com&#x2F;08a269b19513df8325a177ff96e4e387f36b5bbf&#x2F;68747470733a2f2f692e696d6775722e636f6d2f4e7136733047502e676966&quot; alt=&quot;ImGui with cr.h&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;the-problem&quot;&gt;The &amp;quot;Problem&amp;quot;&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;The &quot;Problem&quot;&lt;&#x2F;h2&gt;
 &lt;p&gt;While prototyping a functionality in this project, I wanted to be able to quickly iterate trying some ideas. My first reaction was that having a scripting language from the start would be a benefit for testing out ideas in a fast-paced way, but at the same time that would easily get in the way (by requiring bindings and maintenance) considering the time available for some hobby coding. On the other side, something that wouldn&#x27;t get in the way would be doing it in a way as close as possible of the C and with less boilerplate possible, helping us keep the focus on the project itself.&lt;&#x2F;p&gt;
 &lt;p&gt;If what we wanted is something close to C, it could be done in at least two ways:&lt;&#x2F;p&gt;
 &lt;ul&gt;
@@ -34,7 +34,7 @@ Independent of which way we decided to go with, I had already some expectations 
 &lt;li&gt;independent of build system and not requiring custom build steps or anything;&lt;&#x2F;li&gt;
 &lt;li&gt;closest possible to the C-family syntax (ie. Lua was a big NO);&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
-&lt;h2 id=&quot;the-options&quot;&gt;The &amp;quot;Options&amp;quot;&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;the-options&quot;&gt;The &quot;Options&quot;&lt;&#x2F;h2&gt;
 &lt;p&gt;I&#x27;ve checked some scripting languages and none of them fit most of the listed requirements. The better ones are slow or complex and the faster ones (as Lua) have annoying syntax. I mostly based my evaluation on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;r-lyeh&#x2F;scriptorium&quot;&gt;this&lt;&#x2F;a&gt; very nice listing with some benchmarks and code samples.&lt;&#x2F;p&gt;
 &lt;p&gt;In the other hand, creating a kind of C script is not that simple, it requires much more code to achieve something usable than integrating some ready-to-use scripting language. There is a bunch of libraries and tools that can help, like embedding a simple compiler as &lt;a href=&quot;https:&#x2F;&#x2F;bellard.org&#x2F;tcc&#x2F;&quot;&gt;TCC&lt;&#x2F;a&gt; or one complex as &lt;a href=&quot;https:&#x2F;&#x2F;clang.llvm.org&#x2F;docs&#x2F;Tooling.html&quot;&gt;libclang&#x2F;libtooling&lt;&#x2F;a&gt;, or even maybe something that already embedded the compiler for us, as &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;anael-seghezzi&#x2F;CToy&quot;&gt;C-Toy&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;root.cern.ch&#x2F;cint&quot;&gt;CINT&lt;&#x2F;a&gt;. But that adds a lot of dependency code, requires too much fiddling with build systems, still requires writing bindings and aren&#x27;t really &lt;em&gt;easy to use&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;The other option would be doing hot-reloading of the runtime code as we change it. Even if this may appear complex, it is at least not as complex as to write a simple language. One downside is that opposed to scripts, this area does not have much public content in both articles and source code forms. Luckily enough, this idea fits with my concept of hobby stuff and is doable in my free time.&lt;&#x2F;p&gt;
@@ -106,7 +106,6 @@ Total: 22h (5 weeks, ~4h&#x2F;week)
 &lt;h3 id=&quot;feedback&quot;&gt;Feedback&lt;&#x2F;h3&gt;
 &lt;p&gt;Please, post corrections and suggestions about this post by opening an issue &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;fungos&#x2F;fungos.github.io&#x2F;issues&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;. Any help&#x2F;improvement is appreciated.&lt;&#x2F;p&gt;
 </description>
-            </item>
-        
+      </item>
     </channel>
 </rss>

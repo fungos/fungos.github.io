@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>fungos&#x27; home</title>
-        <link>https://fungos.github.io</link>
-        <description>a bit of anything</description>
-        <generator>Zola</generator>
-        <language>en</language>
-        <atom:link href="https://fungos.github.io/tags/linux/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
-        
-            <item>
-                <title>A deep dive with Dolphin</title>
-                <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
-                <link>https://fungos.github.io/dolphin-deep-dive/</link>
-                <guid>https://fungos.github.io/dolphin-deep-dive/</guid>
-                <description>&lt;p&gt;or, how systemd broke my file manager.&lt;&#x2F;p&gt;
+      <title>fungos&#x27; home - linux</title>
+      <link>https://fungos.github.io</link>
+      <description>:shrug:</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://fungos.github.io/tags/linux/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Wed, 11 Dec 2019 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>A deep dive with Dolphin</title>
+          <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://fungos.github.io/dolphin-deep-dive/</link>
+          <guid>https://fungos.github.io/dolphin-deep-dive/</guid>
+          <description xml:base="https://fungos.github.io/dolphin-deep-dive/">&lt;p&gt;or, how systemd broke my file manager.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;tl-dr&quot;&gt;TL;DR&lt;&#x2F;h3&gt;
 &lt;p&gt;&lt;em&gt;Systemd&lt;&#x2F;em&gt; broke my file manager and I lost about 4 hours investigating it. But I suffered less than
 if I was using Windows. Jump to the &lt;a href=&quot;https:&#x2F;&#x2F;fungos.github.io&#x2F;dolphin-deep-dive&#x2F;#conclusion&quot;&gt;conclusion&lt;&#x2F;a&gt; to see why.&lt;&#x2F;p&gt;
@@ -24,10 +24,10 @@ linux internals (for learning, programming or for fun), I can&#x27;t remember th
 do it to solve anything.&lt;&#x2F;p&gt;
 &lt;p&gt;I did have moments where I had fun tuning my system for no sensible reason, including custom configured
 kernels with minor personal patches here and there. I also did have my Gentoo years where everything was
-statically built with custom compiler flags and tweaks for &amp;quot;performance&amp;quot;. &lt;&#x2F;p&gt;
+statically built with custom compiler flags and tweaks for &quot;performance&quot;.&lt;&#x2F;p&gt;
 &lt;p&gt;As a system administrator, I did maintain some servers (as work and at home). But maybe in the last 10
 years my adventures on linux land where basically as a desktop user and the very few times where I needed
-to deal with services, my muscle memory for &lt;em&gt;init&lt;&#x2F;em&gt; always got me in trouble with &lt;em&gt;systemd&lt;&#x2F;em&gt;. I know almost 
+to deal with services, my muscle memory for &lt;em&gt;init&lt;&#x2F;em&gt; always got me in trouble with &lt;em&gt;systemd&lt;&#x2F;em&gt;. I know almost
 nothing about &lt;em&gt;systemd&lt;&#x2F;em&gt; and I have to &lt;a href=&quot;https:&#x2F;&#x2F;duckduckgo.com&#x2F;&quot;&gt;ddg&lt;&#x2F;a&gt; it every time.&lt;&#x2F;p&gt;
 &lt;p&gt;Currently I use &lt;a href=&quot;https:&#x2F;&#x2F;manjaro.org&#x2F;&quot;&gt;Manjaro Linux&lt;&#x2F;a&gt;, a distro based on &lt;a href=&quot;https:&#x2F;&#x2F;www.archlinux.org&#x2F;&quot;&gt;Arch Linux&lt;&#x2F;a&gt;,
 and I&#x27;ve always been a &lt;a href=&quot;https:&#x2F;&#x2F;kde.org&#x2F;&quot;&gt;KDE&lt;&#x2F;a&gt; user. And I know for a fact that &lt;em&gt;KDE&lt;&#x2F;em&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;www.qt.io&#x2F;download-open-source&quot;&gt;Qt&lt;&#x2F;a&gt;
@@ -40,7 +40,7 @@ developer. ¯\_(ツ)_&#x2F;¯&lt;&#x2F;p&gt;
 occurring to me in the last few weeks, which I&#x27;ve been delaying to check. After reading the
 &lt;a href=&quot;https:&#x2F;&#x2F;randomascii.wordpress.com&#x2F;2019&#x2F;12&#x2F;08&#x2F;on2-again-now-in-wmi&#x2F;&quot;&gt;O(n^2), again, now in WMI&lt;&#x2F;a&gt; post
 by &lt;strong&gt;Bruce Dawson&lt;&#x2F;strong&gt; on how he investigated and found the reason of multi-minute delays on his workstation,
-I thought &amp;quot;why not try the same with my issue and see where this takes me? It could be interesting...&amp;quot;. 
+I thought &quot;why not try the same with my issue and see where this takes me? It could be interesting...&quot;.
 Here is it, and I hope it is.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;As I work with windows and my work deal in part with performance optimizations and debugging,
@@ -55,115 +55,112 @@ some similarly looking cases. I believe this started since my last distro update
 &lt;p&gt;Even with similar &lt;em&gt;Dolphin&lt;&#x2F;em&gt; issues reported over different distros forums, I was unable to have any actual
 hints about my own issue. So I did go search directly into &lt;em&gt;KDE&lt;&#x2F;em&gt; bugzilla for some similarly looking bugs, but
 only a few had the same symptoms and not much more information. What most had in common was that the
-responder always asked for a backtrace, obviously. &lt;&#x2F;p&gt;
+responder always asked for a backtrace, obviously.&lt;&#x2F;p&gt;
 &lt;p&gt;But before trying that, I did the simpler stuff first.
 Running &lt;code&gt;dolphin&lt;&#x2F;code&gt; directly from &lt;em&gt;Konsole&lt;&#x2F;em&gt; to see if some log output appears.&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; dolphin
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;QObject::connect:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; No such signal QDBusAbstractInterface::DeviceAdded(QString)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;QObject::connect:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; No such signal QDBusAbstractInterface::DeviceRemoved(QString)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;kf5.kio.core: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Could not enter folder tags:&#x2F;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; dolphin
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;QObject::connect:&lt;&#x2F;span&gt;&lt;span&gt; No such signal QDBusAbstractInterface::DeviceAdded(QString)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;QObject::connect:&lt;&#x2F;span&gt;&lt;span&gt; No such signal QDBusAbstractInterface::DeviceRemoved(QString)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;kf5.kio.core: &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Could not enter folder tags:&#x2F;.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;this only reveals two signal&#x2F;slot signature mismatch. This is the &lt;em&gt;Qt&lt;&#x2F;em&gt; way to tell
-that a callback &lt;em&gt;Dolphin&lt;&#x2F;em&gt; is trying to setup has a bad function signature somewhere, 
+that a callback &lt;em&gt;Dolphin&lt;&#x2F;em&gt; is trying to setup has a bad function signature somewhere,
 which can cause some functionality to not work correctly.&lt;&#x2F;p&gt;
-&lt;p&gt;This also means that &lt;em&gt;Dolphin&lt;&#x2F;em&gt; try to listen when a device is added or removed using &lt;code&gt;QDBus&lt;&#x2F;code&gt;, which is &lt;em&gt;Qt&lt;&#x2F;em&gt;&#x27;s 
+&lt;p&gt;This also means that &lt;em&gt;Dolphin&lt;&#x2F;em&gt; try to listen when a device is added or removed using &lt;code&gt;QDBus&lt;&#x2F;code&gt;, which is &lt;em&gt;Qt&lt;&#x2F;em&gt;&#x27;s
 interface to the &lt;a href=&quot;https:&#x2F;&#x2F;www.freedesktop.org&#x2F;wiki&#x2F;Software&#x2F;dbus&#x2F;&quot;&gt;dbus&lt;&#x2F;a&gt; system used for &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Inter-process_communication&quot;&gt;inter-process communication&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;My first reaction was to ask myself if it could be locked waiting a reply from some storage device?
 Let&#x27;s see what &lt;code&gt;strace&lt;&#x2F;code&gt; has to say about it:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; strace dolphin
-&amp;lt;lots &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;of&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; output&amp;gt;
-statx(AT_FDCWD, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffc3c621890) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; ENOSYS (Function not implemented)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;newfstatat&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(AT_FDCWD, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, {st_mode=S_IFREG|0644, st_size=820, ...}, 0) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-inotify_add_watch&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(12, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, IN_MODIFY|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_ATTRIB&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVED_FROM&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVED_TO&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_DELETE_SELF&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVE_SELF&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
-access&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;run&#x2F;udev&#x2F;control&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, F_OK)       = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-socket&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(AF_NETLINK, SOCK_RAW|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SOCK_CLOEXEC&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SOCK_NONBLOCK,&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; NETLINK_KOBJECT_UEVENT) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;14
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;getpid&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;()                                = 29328
-gettid()                                = 29328
-getrandom(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\x0d\xd4\x7d\xd7\xce\xab\xa3\xb8\x3b\x75\x8a\x49\xa8\xd8\xe9\xb7&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
-getrandom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\xcf\xfb\xfe\xd6\xf2\x00\x03\x4d\xbe\xa0\xbc\xb9\x4a\x4a\x52\xbb&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
-getrandom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\xec\x43\xc1\x92\xa2\x3e\xcb\xfd\x5b\x34\x10\x54\xb2\x67\xf7\x25&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
-setsockopt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(14, SOL_SOCKET, SO_ATTACH_FILTER, {len=29, filter=0x7ffc3c620aa0}, 16) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-setsockopt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(14, SOL_SOCKET, SO_PASSCRED, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;, 4) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-bind&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(14, {sa_family=AF_NETLINK, nl_pid=0, nl_groups=0x000002}, 12) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-getsockname&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(14, {sa_family=AF_NETLINK, nl_pid=29328, nl_groups=0x000002}, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;12&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(5, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7ffc3c6219d0, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(5, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7ffc3c6217d0, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; EAGAIN (Resource temporarily unavailable)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x55e72722f180, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x55e72722f130, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
-write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; EAGAIN (Resource temporarily unavailable)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
-futex&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(0x55e72722ac90, FUTEX_WAIT_PRIVATE, 0, NULL^C) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;?&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; ERESTARTSYS (To be restarted if SA_RESTART is set)
-&amp;lt;delay, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ctrl+c&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;gt;
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; strace dolphin
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;lots &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;of&lt;&#x2F;span&gt;&lt;span&gt; output&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;statx&lt;&#x2F;span&gt;&lt;span&gt;(AT_FDCWD, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffc3c621890) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span&gt; ENOSYS (Function not implemented)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;newfstatat&lt;&#x2F;span&gt;&lt;span&gt;(AT_FDCWD, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, {st_mode=S_IFREG|0644, st_size=820, ...}, 0) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;inotify_add_watch&lt;&#x2F;span&gt;&lt;span&gt;(12, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, IN_MODIFY|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_ATTRIB&lt;&#x2F;span&gt;&lt;span&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVED_FROM&lt;&#x2F;span&gt;&lt;span&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVED_TO&lt;&#x2F;span&gt;&lt;span&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_DELETE_SELF&lt;&#x2F;span&gt;&lt;span&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;IN_MOVE_SELF&lt;&#x2F;span&gt;&lt;span&gt;) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;access&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;run&#x2F;udev&#x2F;control&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, F_OK)       = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;socket&lt;&#x2F;span&gt;&lt;span&gt;(AF_NETLINK, SOCK_RAW|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SOCK_CLOEXEC&lt;&#x2F;span&gt;&lt;span&gt;|&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;SOCK_NONBLOCK,&lt;&#x2F;span&gt;&lt;span&gt; NETLINK_KOBJECT_UEVENT) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;14
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;getpid&lt;&#x2F;span&gt;&lt;span&gt;()                                = 29328
+&lt;&#x2F;span&gt;&lt;span&gt;gettid()                                = 29328
+&lt;&#x2F;span&gt;&lt;span&gt;getrandom(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\x0d\xd4\x7d\xd7\xce\xab\xa3\xb8\x3b\x75\x8a\x49\xa8\xd8\xe9\xb7&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;,&lt;&#x2F;span&gt;&lt;span&gt; 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;getrandom&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\xcf\xfb\xfe\xd6\xf2\x00\x03\x4d\xbe\xa0\xbc\xb9\x4a\x4a\x52\xbb&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;getrandom&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\xec\x43\xc1\x92\xa2\x3e\xcb\xfd\x5b\x34\x10\x54\xb2\x67\xf7\x25&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 16, GRND_NONBLOCK) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;16
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;setsockopt&lt;&#x2F;span&gt;&lt;span&gt;(14, SOL_SOCKET, SO_ATTACH_FILTER, {len=29, filter=0x7ffc3c620aa0}, 16) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;setsockopt&lt;&#x2F;span&gt;&lt;span&gt;(14, SOL_SOCKET, SO_PASSCRED, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span&gt;, 4) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bind&lt;&#x2F;span&gt;&lt;span&gt;(14, {sa_family=AF_NETLINK, nl_pid=0, nl_groups=0x000002}, 12) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;getsockname&lt;&#x2F;span&gt;&lt;span&gt;(14, {sa_family=AF_NETLINK, nl_pid=29328, nl_groups=0x000002}, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;[&lt;&#x2F;span&gt;&lt;span&gt;12&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span&gt;) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(5, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7ffc3c6219d0, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(5, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7ffc3c6217d0, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span&gt; EAGAIN (Resource temporarily unavailable)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x55e72722f180, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x55e72722f130, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7fb56853f420, FUTEX_WAKE_PRIVATE, 1) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x7ffc3c621620, FUTEX_WAIT_PRIVATE, 0, NULL) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-1&lt;&#x2F;span&gt;&lt;span&gt; EAGAIN (Resource temporarily unavailable)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;write&lt;&#x2F;span&gt;&lt;span&gt;(7, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;\1\0\0\0\0\0\0\0&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, 8)         = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;futex&lt;&#x2F;span&gt;&lt;span&gt;(0x55e72722ac90, FUTEX_WAIT_PRIVATE, 0, NULL^C) = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;?&lt;&#x2F;span&gt;&lt;span&gt; ERESTARTSYS (To be restarted if SA_RESTART is set)
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;delay, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ctrl+c&lt;&#x2F;span&gt;&lt;span&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This show us that we&#x27;re waiting for something.
 Most of the output shows some communication happening between user-space and kernel-space, which could be &lt;em&gt;dbus&lt;&#x2F;em&gt; working.
 &lt;em&gt;futex&lt;&#x2F;em&gt; is a syscall for user space lock used for shared-memory synchronization, &lt;em&gt;IPC&lt;&#x2F;em&gt;, etc.&lt;&#x2F;p&gt;
 &lt;p&gt;Alright, so it is time to grab that backtrace. Lets launch within &lt;em&gt;GDB&lt;&#x2F;em&gt; and see what we can get from it. It may give some further hints at
 what exactly it is waiting for:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; gdb dolphin
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GNU&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; gdb (GDB) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8.3.1
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;lt;...output...&amp;gt;
-
-Reading &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;symbols&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; from dolphin...
-(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;No&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; debugging symbols found in dolphin)
-(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) r
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Starting&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; program: &#x2F;usr&#x2F;bin&#x2F;dolphin 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[Thread&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; debugging using libthread_db enabled]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Using&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; host libthread_db library &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;usr&#x2F;lib&#x2F;libthread_db.so.1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; Thread 0x7fffefb45700 (LWP 31973)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
-[New&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; Thread 0x7fffeed96700 (LWP 31974)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;lt;wait &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; bit and hit ctrl+c to get back at gdb&amp;gt;
-^C
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Thread&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; 1 &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;dolphin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot; received signal SIGINT, Interrupt.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0x00007ffff438ac45&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; in pthread_cond_wait@@GLIBC_2.3.2 () &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;from&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
-(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) bt
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; gdb dolphin
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GNU&lt;&#x2F;span&gt;&lt;span&gt; gdb (GDB) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8.3.1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;...output...&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Reading&lt;&#x2F;span&gt;&lt;span&gt; symbols from dolphin...
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;No&lt;&#x2F;span&gt;&lt;span&gt; debugging symbols found in dolphin)
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) r
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Starting&lt;&#x2F;span&gt;&lt;span&gt; program: &#x2F;usr&#x2F;bin&#x2F;dolphin 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[Thread&lt;&#x2F;span&gt;&lt;span&gt; debugging using libthread_db enabled]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Using&lt;&#x2F;span&gt;&lt;span&gt; host libthread_db library &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;usr&#x2F;lib&#x2F;libthread_db.so.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span&gt; Thread 0x7fffefb45700 (LWP 31973)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span&gt; Thread 0x7fffeed96700 (LWP 31974)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;wait &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span&gt; bit and hit ctrl+c to get back at gdb&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;^C
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Thread&lt;&#x2F;span&gt;&lt;span&gt; 1 &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;dolphin&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; received signal SIGINT, Interrupt.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0x00007ffff438ac45&lt;&#x2F;span&gt;&lt;span&gt; in pthread_cond_wait@@GLIBC_2.3.2 () &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) bt
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#0  0x00007ffff438ac45 in pthread_cond_wait@@GLIBC_2.3.2 () from &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
-#1  0x00007ffff5b3e610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
-#2  0x00007ffff5b3e702 in QWaitCondition::wait(QMutex*, unsigned long) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
-#3  0x00007ffff5ffd5cd in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#4  0x00007ffff5fadfa3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#5  0x00007ffff5fae7ce in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#6  0x00007ffff5fb9e1e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#7  0x00007ffff5fb9f86 in QDBusInterface::QDBusInterface(QString const&amp;amp;, QString const&amp;amp;, QString const&amp;amp;, QDBusConnection const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#8  0x00007ffff753c8a7 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#9  0x00007ffff74bf918 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#10 0x00007ffff74c23ed in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#11 0x00007ffff74c2536 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#12 0x00007ffff74c261b in Solid::DeviceNotifier::instance() () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#13 0x00007ffff74c0d69 in Solid::Device::Device(QString const&amp;amp;) () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
-#14 0x00007ffff7b06e0c in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
-#15 0x00007ffff7b0e2ab in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
-#16 0x00007ffff7b0e3ed in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
-#17 0x00007ffff7b0fe73 in KFilePlacesModel::KFilePlacesModel(QString const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
-#18 0x00007ffff7ee75dc in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#19 0x00007ffff7ee76fc in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#20 0x00007ffff7ee10f3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#21 0x00007ffff7ee89f3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#22 0x00007ffff7ee8c48 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#23 0x00007ffff7eea934 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#24 0x00007ffff7eeab7e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#25 0x00007ffff7eeaf8f in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#26 0x00007ffff7ecba55 in kdemain () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
-#27 0x00007ffff7ceb153 in __libc_start_main () from &#x2F;usr&#x2F;lib&#x2F;libc.so.6
-#28 0x000055555555505e in _start ()
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(gdb) 
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#1  0x00007ffff5b3e610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#2  0x00007ffff5b3e702 in QWaitCondition::wait(QMutex*, unsigned long) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#3  0x00007ffff5ffd5cd in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#4  0x00007ffff5fadfa3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#5  0x00007ffff5fae7ce in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#6  0x00007ffff5fb9e1e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#7  0x00007ffff5fb9f86 in QDBusInterface::QDBusInterface(QString const&amp;amp;, QString const&amp;amp;, QString const&amp;amp;, QDBusConnection const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#8  0x00007ffff753c8a7 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#9  0x00007ffff74bf918 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#10 0x00007ffff74c23ed in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#11 0x00007ffff74c2536 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#12 0x00007ffff74c261b in Solid::DeviceNotifier::instance() () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#13 0x00007ffff74c0d69 in Solid::Device::Device(QString const&amp;amp;) () from &#x2F;usr&#x2F;lib&#x2F;libKF5Solid.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#14 0x00007ffff7b06e0c in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#15 0x00007ffff7b0e2ab in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#16 0x00007ffff7b0e3ed in ?? () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#17 0x00007ffff7b0fe73 in KFilePlacesModel::KFilePlacesModel(QString const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libKF5KIOFileWidgets.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#18 0x00007ffff7ee75dc in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#19 0x00007ffff7ee76fc in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#20 0x00007ffff7ee10f3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#21 0x00007ffff7ee89f3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#22 0x00007ffff7ee8c48 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#23 0x00007ffff7eea934 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#24 0x00007ffff7eeab7e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#25 0x00007ffff7eeaf8f in ?? () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#26 0x00007ffff7ecba55 in kdemain () from &#x2F;usr&#x2F;lib&#x2F;libkdeinit5_dolphin.so
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#27 0x00007ffff7ceb153 in __libc_start_main () from &#x2F;usr&#x2F;lib&#x2F;libc.so.6
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#28 0x000055555555505e in _start ()
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Oh well, not much useful right? No debug symbols available, but at least we can see a few more
 interesting things there.&lt;&#x2F;p&gt;
 &lt;ol&gt;
@@ -174,7 +171,7 @@ interesting things there.&lt;&#x2F;p&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;Still not much useful, but looks like while &lt;em&gt;Dolphin&lt;&#x2F;em&gt; is booting up it will fill the UI &lt;em&gt;FilePlaces&lt;&#x2F;em&gt; with &lt;em&gt;Devices&lt;&#x2F;em&gt;.
 This is the left side panel in &lt;em&gt;Dolphin&lt;&#x2F;em&gt;, where it will show your favorite places and storage devices.
-It kind of makes sense, &lt;em&gt;Dolphin&lt;&#x2F;em&gt; needs to query which devices are available to show up, so maybe I 
+It kind of makes sense, &lt;em&gt;Dolphin&lt;&#x2F;em&gt; needs to query which devices are available to show up, so maybe I
 have a faulty device that is locking on a &lt;em&gt;dbus&lt;&#x2F;em&gt; query?&lt;&#x2F;p&gt;
 &lt;p&gt;With these new information, I checked my storage and any network shares via &lt;em&gt;Konsole&lt;&#x2F;em&gt;, but everything
 looked fine and working.&lt;&#x2F;p&gt;
@@ -186,12 +183,12 @@ Luckily linux, &lt;em&gt;KDE&lt;&#x2F;em&gt;, &lt;em&gt;Qt&lt;&#x2F;em&gt;, etc.
 &lt;p&gt;At this moment I was cold sweating and thinking where this would take me and if it wouldn&#x27;t be better
 to turn back and accept that one minute loading was my new reality until... the next update?&lt;&#x2F;p&gt;
 &lt;p&gt;I was burnt out because just one week before I was trying to get a &lt;a href=&quot;https:&#x2F;&#x2F;www.gtk.org&#x2F;&quot;&gt;GTK&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Microsoft&#x2F;vcpkg&quot;&gt;vcpkg&lt;&#x2F;a&gt;
-port up-to-date &lt;strong&gt;on linux&lt;&#x2F;strong&gt; and failed miserably. Previously &lt;em&gt;GTK&lt;&#x2F;em&gt; was using &lt;em&gt;Makefiles&lt;&#x2F;em&gt;, but they 
-migrated in recent versions to an even worse thing called &lt;em&gt;Meson&lt;&#x2F;em&gt;. Which basically made everything 
+port up-to-date &lt;strong&gt;on linux&lt;&#x2F;strong&gt; and failed miserably. Previously &lt;em&gt;GTK&lt;&#x2F;em&gt; was using &lt;em&gt;Makefiles&lt;&#x2F;em&gt;, but they
+migrated in recent versions to an even worse thing called &lt;em&gt;Meson&lt;&#x2F;em&gt;. Which basically made everything
 way more complicated than the normal C build system story already is.&lt;&#x2F;p&gt;
 &lt;p&gt;Logically, if building &lt;em&gt;GTK&lt;&#x2F;em&gt; was hard then building an entire desktop environment like &lt;em&gt;KDE&lt;&#x2F;em&gt; would
 be a lot harder right?&lt;&#x2F;p&gt;
-&lt;p&gt;Luckily the people at &lt;em&gt;KDE&lt;&#x2F;em&gt; (and &lt;em&gt;Qt&lt;&#x2F;em&gt;) decided to use &lt;em&gt;CMake&lt;&#x2F;em&gt; as their build system and did a nice 
+&lt;p&gt;Luckily the people at &lt;em&gt;KDE&lt;&#x2F;em&gt; (and &lt;em&gt;Qt&lt;&#x2F;em&gt;) decided to use &lt;em&gt;CMake&lt;&#x2F;em&gt; as their build system and did a nice
 bootstrap setup. It is not perfect and other than a minor &lt;em&gt;perl&lt;&#x2F;em&gt; hiccup, everything worked like a charm!&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;If you&#x27;re curious, check the &lt;em&gt;KDE&lt;&#x2F;em&gt; &lt;a href=&quot;https:&#x2F;&#x2F;community.kde.org&#x2F;Get_Involved&#x2F;development#One-time_setup:_your_development_environment&quot;&gt;build instructions&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
@@ -200,84 +197,82 @@ bootstrap setup. It is not perfect and other than a minor &lt;em&gt;perl&lt;&#x2
 &lt;p&gt;The build itself was long (I believe about ~1h as I didn&#x27;t time it) to get &lt;code&gt;dolphin&lt;&#x2F;code&gt; and &lt;code&gt;kio&lt;&#x2F;code&gt; ready.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;debug-symbols-the-solution&quot;&gt;Debug symbols, the solution?&lt;&#x2F;h2&gt;
 &lt;p&gt;With a freshly build &lt;em&gt;Dolphin&lt;&#x2F;em&gt; with debug symbols ready, what can &lt;em&gt;GDB&lt;&#x2F;em&gt; reveal?&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; source &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&#x2F;kde&#x2F;build&#x2F;kio&#x2F;prefix.sh
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; gdb &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GNU&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; gdb (GDB) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8.3.1
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;lt;...output...&amp;gt;
-
-Reading &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;symbols&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; from &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin...
-(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) r
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Starting&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; program: &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[Thread&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; debugging using libthread_db enabled]
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Using&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; host libthread_db library &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;usr&#x2F;lib&#x2F;libthread_db.so.1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; Thread 0x7fffef0c7700 (LWP 2812)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
-[New&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; Thread 0x7fffee51e700 (LWP 2813)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;lt;wait &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; bit and hit ctrl+c to get back at gdb&amp;gt;
-^C
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Thread&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; 1 &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;dolphin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot; received signal SIGINT, Interrupt.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0x00007ffff4beac45&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; in pthread_cond_wait@@GLIBC_2.3.2 () &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;from&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
-(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;) bt
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; source &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;kde&#x2F;build&#x2F;kio&#x2F;prefix.sh
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; gdb &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GNU&lt;&#x2F;span&gt;&lt;span&gt; gdb (GDB) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;8.3.1
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;...output...&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Reading&lt;&#x2F;span&gt;&lt;span&gt; symbols from &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin...
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) r
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Starting&lt;&#x2F;span&gt;&lt;span&gt; program: &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;usr&#x2F;bin&#x2F;dolphin 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[Thread&lt;&#x2F;span&gt;&lt;span&gt; debugging using libthread_db enabled]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Using&lt;&#x2F;span&gt;&lt;span&gt; host libthread_db library &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;usr&#x2F;lib&#x2F;libthread_db.so.1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span&gt; Thread 0x7fffef0c7700 (LWP 2812)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[New&lt;&#x2F;span&gt;&lt;span&gt; Thread 0x7fffee51e700 (LWP 2813)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;wait &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span&gt; bit and hit ctrl+c to get back at gdb&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;^C
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Thread&lt;&#x2F;span&gt;&lt;span&gt; 1 &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;dolphin&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; received signal SIGINT, Interrupt.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;0x00007ffff4beac45&lt;&#x2F;span&gt;&lt;span&gt; in pthread_cond_wait@@GLIBC_2.3.2 () &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;from&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) bt
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#0  0x00007ffff4beac45 in pthread_cond_wait@@GLIBC_2.3.2 () from &#x2F;usr&#x2F;lib&#x2F;libpthread.so.0
-#1  0x00007ffff562b610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
-#2  0x00007ffff562b702 in QWaitCondition::wait(QMutex*, unsigned long) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
-#3  0x00007ffff68f25cd in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#4  0x00007ffff68a2fa3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#5  0x00007ffff68a37ce in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#6  0x00007ffff68aee1e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#7  0x00007ffff68aef86 in QDBusInterface::QDBusInterface(QString const&amp;amp;, QString const&amp;amp;, QString const&amp;amp;, QDBusConnection const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
-#8  0x00007ffff6c81468 in Solid::Backends::UPower::UPowerManager::UPowerManager (this=0x555555946340, parent=0x0) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;backends&#x2F;upower&#x2F;upowermanager.cpp:41
-#9  0x00007ffff6c293f1 in Solid::ManagerBasePrivate::loadBackends (this=0x555555944060) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;managerbase.cpp:90
-#10 0x00007ffff6c2d6d2 in Solid::DeviceManagerPrivate::DeviceManagerPrivate (this=0x555555944050) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:38
-#11 0x00007ffff6c2ecaf in Solid::DeviceManagerStorage::ensureManagerCreated (this=0x7ffff6cd354c &amp;lt;(anonymous namespace)::Q_QGS_globalDeviceStorage::innerFunction()::holder&amp;gt;)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;    at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:301
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#1  0x00007ffff562b610 in QWaitCondition::wait(QMutex*, QDeadlineTimer) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#2  0x00007ffff562b702 in QWaitCondition::wait(QMutex*, unsigned long) () from &#x2F;usr&#x2F;lib&#x2F;libQt5Core.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#3  0x00007ffff68f25cd in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#4  0x00007ffff68a2fa3 in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#5  0x00007ffff68a37ce in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#6  0x00007ffff68aee1e in ?? () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#7  0x00007ffff68aef86 in QDBusInterface::QDBusInterface(QString const&amp;amp;, QString const&amp;amp;, QString const&amp;amp;, QDBusConnection const&amp;amp;, QObject*) () from &#x2F;usr&#x2F;lib&#x2F;libQt5DBus.so.5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#8  0x00007ffff6c81468 in Solid::Backends::UPower::UPowerManager::UPowerManager (this=0x555555946340, parent=0x0) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;backends&#x2F;upower&#x2F;upowermanager.cpp:41
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#9  0x00007ffff6c293f1 in Solid::ManagerBasePrivate::loadBackends (this=0x555555944060) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;managerbase.cpp:90
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#10 0x00007ffff6c2d6d2 in Solid::DeviceManagerPrivate::DeviceManagerPrivate (this=0x555555944050) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:38
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#11 0x00007ffff6c2ecaf in Solid::DeviceManagerStorage::ensureManagerCreated (this=0x7ffff6cd354c &amp;lt;(anonymous namespace)::Q_QGS_globalDeviceStorage::innerFunction()::holder&amp;gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;at&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:301
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#12 0x00007ffff6c2ec62 in Solid::DeviceManagerStorage::notifier (this=0x7ffff6cd354c &amp;lt;(anonymous namespace)::Q_QGS_globalDeviceStorage::innerFunction()::holder&amp;gt;)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;    at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:294
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;at&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:294
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#13 0x00007ffff6c2e5da in Solid::DeviceNotifier::instance () at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;devicemanager.cpp:182
-#14 0x00007ffff6c2ae85 in Solid::Device::Device (this=0x555555697cb0, udi=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;device.cpp:59
-#15 0x00007ffff7bece5e in KFilePlacesItem::KFilePlacesItem (this=0x555555697c80, manager=0x5555559dc5d0, address=..., udi=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesitem.cpp:48
-#16 0x00007ffff7bf670d in KFilePlacesModel::Private::loadBookmarkList (this=0x5555556cbb00) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:764
-#17 0x00007ffff7bf559d in KFilePlacesModel::Private::_k_reloadBookmarks (this=0x5555556cbb00) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:650
-#18 0x00007ffff7bf443c in KFilePlacesModel::KFilePlacesModel (this=0x5555559f2070, alternativeApplicationName=..., parent=0x0) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:403
-#19 0x00007ffff7ef7564 in DolphinPlacesModelSingleton::DolphinPlacesModelSingleton (this=0x7ffff7fcadb8 &amp;lt;DolphinPlacesModelSingleton::instance()::s_self&amp;gt;) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinplacesmodelsingleton.cpp:26
-#20 0x00007ffff7ef75f5 in DolphinPlacesModelSingleton::instance () at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinplacesmodelsingleton.cpp:33
-#21 0x00007ffff7eea8fe in DolphinViewContainer::DolphinViewContainer (this=0x5555559e4540, url=..., parent=0x5555559e8310) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinviewcontainer.cpp:96
-#22 0x00007ffff7ef9a92 in DolphinTabPage::createViewContainer (this=0x55555594c6a0, url=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabpage.cpp:370
-#23 0x00007ffff7ef85e2 in DolphinTabPage::DolphinTabPage (this=0x55555594c6a0, primaryUrl=..., secondaryUrl=..., parent=0x55555566ff60) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabpage.cpp:43
-#24 0x00007ffff7efb432 in DolphinTabWidget::openNewTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=..., tabPlacement=DolphinTabWidget::AfterLastTab) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:171
-#25 0x00007ffff7efb3b0 in DolphinTabWidget::openNewActivatedTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:163
-#26 0x00007ffff7efb7cc in DolphinTabWidget::openDirectories (this=0x55555566ff60, dirs=..., splitView=false) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:215
-#27 0x00007ffff7ec7c90 in DolphinMainWindow::openDirectories (this=0x555555631210, dirs=..., splitView=false) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinmainwindow.cpp:221
-#28 0x00007ffff7ec4821 in kdemain (argc=1, argv=0x7fffffffdcf8) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;main.cpp:171
-#29 0x000055555555517b in main (argc=1, argv=0x7fffffffdcf8) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;build&#x2F;dolphin&#x2F;src&#x2F;dolphin_dummy.cpp:3
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(gdb) 
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#14 0x00007ffff6c2ae85 in Solid::Device::Device (this=0x555555697cb0, udi=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;solid&#x2F;src&#x2F;solid&#x2F;devices&#x2F;frontend&#x2F;device.cpp:59
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#15 0x00007ffff7bece5e in KFilePlacesItem::KFilePlacesItem (this=0x555555697c80, manager=0x5555559dc5d0, address=..., udi=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesitem.cpp:48
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#16 0x00007ffff7bf670d in KFilePlacesModel::Private::loadBookmarkList (this=0x5555556cbb00) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:764
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#17 0x00007ffff7bf559d in KFilePlacesModel::Private::_k_reloadBookmarks (this=0x5555556cbb00) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:650
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#18 0x00007ffff7bf443c in KFilePlacesModel::KFilePlacesModel (this=0x5555559f2070, alternativeApplicationName=..., parent=0x0) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;kio&#x2F;src&#x2F;filewidgets&#x2F;kfileplacesmodel.cpp:403
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#19 0x00007ffff7ef7564 in DolphinPlacesModelSingleton::DolphinPlacesModelSingleton (this=0x7ffff7fcadb8 &amp;lt;DolphinPlacesModelSingleton::instance()::s_self&amp;gt;) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinplacesmodelsingleton.cpp:26
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#20 0x00007ffff7ef75f5 in DolphinPlacesModelSingleton::instance () at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinplacesmodelsingleton.cpp:33
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#21 0x00007ffff7eea8fe in DolphinViewContainer::DolphinViewContainer (this=0x5555559e4540, url=..., parent=0x5555559e8310) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinviewcontainer.cpp:96
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#22 0x00007ffff7ef9a92 in DolphinTabPage::createViewContainer (this=0x55555594c6a0, url=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabpage.cpp:370
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#23 0x00007ffff7ef85e2 in DolphinTabPage::DolphinTabPage (this=0x55555594c6a0, primaryUrl=..., secondaryUrl=..., parent=0x55555566ff60) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabpage.cpp:43
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#24 0x00007ffff7efb432 in DolphinTabWidget::openNewTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=..., tabPlacement=DolphinTabWidget::AfterLastTab) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:171
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#25 0x00007ffff7efb3b0 in DolphinTabWidget::openNewActivatedTab (this=0x55555566ff60, primaryUrl=..., secondaryUrl=...) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:163
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#26 0x00007ffff7efb7cc in DolphinTabWidget::openDirectories (this=0x55555566ff60, dirs=..., splitView=false) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphintabwidget.cpp:215
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#27 0x00007ffff7ec7c90 in DolphinMainWindow::openDirectories (this=0x555555631210, dirs=..., splitView=false) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;dolphinmainwindow.cpp:221
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#28 0x00007ffff7ec4821 in kdemain (argc=1, argv=0x7fffffffdcf8) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;src&#x2F;dolphin&#x2F;src&#x2F;main.cpp:171
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#29 0x000055555555517b in main (argc=1, argv=0x7fffffffdcf8) at &#x2F;home&#x2F;fungos&#x2F;kde&#x2F;build&#x2F;dolphin&#x2F;src&#x2F;dolphin_dummy.cpp:3
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;gdb&lt;&#x2F;span&gt;&lt;span&gt;) 
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Now we have a nice stack. This reveals a lot of stuff we missed in the first try, mostly are uninsteresting details.
 The real nice thing there is that now we know &lt;em&gt;which&lt;&#x2F;em&gt; device is being queried via &lt;em&gt;dbus&lt;&#x2F;em&gt;, which is...&lt;em&gt;UPower&lt;&#x2F;em&gt;?
 Wait, what is happening here? &lt;strong&gt;WHY&lt;&#x2F;strong&gt; &lt;em&gt;Dolphin&lt;&#x2F;em&gt; would try to query some &lt;em&gt;power&lt;&#x2F;em&gt; related device white querying
 up storage stuff?&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s take a step back.
 We never asked ourselves what is this &lt;em&gt;Solid&lt;&#x2F;em&gt; thing. Searching about it leads to &lt;a href=&quot;https:&#x2F;&#x2F;techbase.kde.org&#x2F;Development&#x2F;Tutorials&#x2F;Solid&#x2F;Introduction&quot;&gt;Solid page&lt;&#x2F;a&gt;
-on &lt;em&gt;KDE TechBase&lt;&#x2F;em&gt; wiki. That page explains that &lt;em&gt;Solid&lt;&#x2F;em&gt; is a kind of &lt;em&gt;Hardware Discovery Layer&lt;&#x2F;em&gt; and 
+on &lt;em&gt;KDE TechBase&lt;&#x2F;em&gt; wiki. That page explains that &lt;em&gt;Solid&lt;&#x2F;em&gt; is a kind of &lt;em&gt;Hardware Discovery Layer&lt;&#x2F;em&gt; and
 some features it provides is &lt;em&gt;Listing Devices&lt;&#x2F;em&gt;. In this page there is a tutorial on how your program
 can use it, but mostly important, there is information about a &lt;code&gt;solid-hardware&lt;&#x2F;code&gt; tool to use on command line.&lt;&#x2F;p&gt;
 &lt;p&gt;Lets try it:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; solid-hardware list
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Object::connect:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; No such signal QDBusAbstractInterface::DeviceAdded(QString)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Object::connect:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; No such signal QDBusAbstractInterface::DeviceRemoved(QString)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;virtual&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; QStringList Solid::Backends::UPower::UPowerManager::allDevices()  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;error:  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;org.freedesktop.DBus.Error.TimedOut&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot; 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;udi&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; = &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;org&#x2F;kde&#x2F;solid&#x2F;udev&#x2F;sys&#x2F;devices&#x2F;LNXSYSTM:00&#x2F;LNXPWRBN:00&#x2F;input&#x2F;input5&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;#39;
-&amp;lt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;lot&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; of other devices&amp;gt;
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; solid-hardware list
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Object::connect:&lt;&#x2F;span&gt;&lt;span&gt; No such signal QDBusAbstractInterface::DeviceAdded(QString)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Object::connect:&lt;&#x2F;span&gt;&lt;span&gt; No such signal QDBusAbstractInterface::DeviceRemoved(QString)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;virtual&lt;&#x2F;span&gt;&lt;span&gt; QStringList Solid::Backends::UPower::UPowerManager::allDevices()  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;error:  &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;org.freedesktop.DBus.Error.TimedOut&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;udi&lt;&#x2F;span&gt;&lt;span&gt; = &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;org&#x2F;kde&#x2F;solid&#x2F;udev&#x2F;sys&#x2F;devices&#x2F;LNXSYSTM:00&#x2F;LNXPWRBN:00&#x2F;input&#x2F;input5&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;lot&lt;&#x2F;span&gt;&lt;span&gt; of other devices&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;BINGO?
 Surely it had the exact same delay as &lt;em&gt;Dolphin&lt;&#x2F;em&gt; before any output was shown and then as soon as it unblocked
 I got the same output messages about unknown signals and a new interesting error about &lt;em&gt;UPower dbus&lt;&#x2F;em&gt;
 timeout error.&lt;&#x2F;p&gt;
 &lt;p&gt;Checking again the stack trace we see that &lt;em&gt;Solid&lt;&#x2F;em&gt; device manager frontend will request to &lt;code&gt;loadBackends()&lt;&#x2F;code&gt;
-in &lt;code&gt;ManagerBasePrivate&lt;&#x2F;code&gt;, which in turn &lt;a href=&quot;https:&#x2F;&#x2F;cgit.kde.org&#x2F;solid.git&#x2F;tree&#x2F;src&#x2F;solid&#x2F;devices&#x2F;managerbase.cpp?id=e33da0b273312877770d14ee9b6906acfacba8d0#n65&quot;&gt;process all kind of backends&lt;&#x2F;a&gt; 
+in &lt;code&gt;ManagerBasePrivate&lt;&#x2F;code&gt;, which in turn &lt;a href=&quot;https:&#x2F;&#x2F;cgit.kde.org&#x2F;solid.git&#x2F;tree&#x2F;src&#x2F;solid&#x2F;devices&#x2F;managerbase.cpp?id=e33da0b273312877770d14ee9b6906acfacba8d0#n65&quot;&gt;process all kind of backends&lt;&#x2F;a&gt;
 indiscriminately as it is agnostic about its clients intentions.&lt;&#x2F;p&gt;
 &lt;p&gt;Now we know that:&lt;&#x2F;p&gt;
 &lt;ol&gt;
@@ -287,34 +282,31 @@ indiscriminately as it is agnostic about its clients intentions.&lt;&#x2F;p&gt;
 &lt;li&gt;&lt;em&gt;UPower&lt;&#x2F;em&gt; debus service is timing out;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;em&gt;Solid&lt;&#x2F;em&gt; blocks and in turn &lt;em&gt;Dolphin&lt;&#x2F;em&gt; waits until the timeout fire to continue working;&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
-&lt;p&gt;So what is &lt;a href=&quot;https:&#x2F;&#x2F;upower.freedesktop.org&#x2F;&quot;&gt;UPower&lt;&#x2F;a&gt;? It seems to be an(other) abstraction layer to 
+&lt;p&gt;So what is &lt;a href=&quot;https:&#x2F;&#x2F;upower.freedesktop.org&#x2F;&quot;&gt;UPower&lt;&#x2F;a&gt;? It seems to be an(other) abstraction layer to
 deal with hardware power management and it seems to be in part responsable to manage suspending and
 waking up things.&lt;&#x2F;p&gt;
 &lt;p&gt;So why does it timeout? &lt;code&gt;man upower&lt;&#x2F;code&gt; gives a few options, lets try some commands and see what we get:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; upower&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -e
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;upower:10725&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;): UPower-WARNING **: 21:04:33.690: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Timeout was reached
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; upower&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --monitor
-
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;upower:6427&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;): UPower-WARNING **: 22:22:36.230: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Failed to activate service &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;org.freedesktop.UPower&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;#39;: timed out (service_start_timeout=25000ms)
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; upower&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -e
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;upower:10725&lt;&#x2F;span&gt;&lt;span&gt;): UPower-WARNING **: 21:04:33.690: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Timeout was reached
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; upower&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --monitor
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;upower:6427&lt;&#x2F;span&gt;&lt;span&gt;): UPower-WARNING **: 22:22:36.230: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Failed to activate service &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;org.freedesktop.UPower&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: timed out (service_start_timeout=25000ms)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Sure. So &lt;em&gt;upowerd&lt;&#x2F;em&gt; daemon is unreachable for some reason. If we ask &lt;em&gt;systemd&lt;&#x2F;em&gt; to start it:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; sudo systemctl start upower
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Job&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; for upower.service failed because the control process exited with error code.
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;See &lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;systemctl status upower.service&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot; and &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;journalctl -xe&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;&amp;quot; for details.
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; sudo systemctl start upower
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Job&lt;&#x2F;span&gt;&lt;span&gt; for upower.service failed because the control process exited with error code.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;See &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;systemctl status upower.service&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; and &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;journalctl -xe&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; for details.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;&lt;code&gt;journalctl&lt;&#x2F;code&gt; doesn&#x27;t say much useful, only that we got an &lt;code&gt;exit code 217&lt;&#x2F;code&gt;.
 And this link to &lt;a href=&quot;https:&#x2F;&#x2F;forum.manjaro.org&#x2F;c&#x2F;technical-issues-and-assistance&quot;&gt;Support&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;But if we launch &lt;code&gt;upowerd&lt;&#x2F;code&gt; service ourselves, it works:&lt;&#x2F;p&gt;
-&lt;pre style=&quot;background-color:#2b303b;&quot;&gt;
-&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; sudo &#x2F;usr&#x2F;lib&#x2F;upowerd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --verbose
-[sudo]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt; password for fungos: 
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;TI:21:05:00&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;     Acquired inhibitor lock (7)
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;TI:21:05:00&lt;&#x2F;span&gt;&lt;span style=&quot;color:#c0c5ce;&quot;&gt;     Starting upowerd version 0.99.11
-&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;➜  ~&lt;&#x2F;span&gt;&lt;span&gt; sudo &#x2F;usr&#x2F;lib&#x2F;upowerd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --verbose
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;[sudo]&lt;&#x2F;span&gt;&lt;span&gt; password for fungos: 
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;TI:21:05:00&lt;&#x2F;span&gt;&lt;span&gt;     Acquired inhibitor lock (7)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;TI:21:05:00&lt;&#x2F;span&gt;&lt;span&gt;     Starting upowerd version 0.99.11
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;And magically &lt;em&gt;Dolphin&lt;&#x2F;em&gt; becomes alive again and we can confirm with &lt;code&gt;solid-hardware list&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Great, at least we have a workaround! And we know that the problem is actually &lt;em&gt;systemd&lt;&#x2F;em&gt;.
 Now we have two questions to answer:&lt;&#x2F;p&gt;
@@ -326,19 +318,18 @@ Now we have two questions to answer:&lt;&#x2F;p&gt;
 this &lt;a href=&quot;https:&#x2F;&#x2F;forum.manjaro.org&#x2F;t&#x2F;upower-daemon-failed-to-start&#x2F;108539&quot;&gt;question&lt;&#x2F;a&gt;. Which is basically
 the issue I was having.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h3&gt;
-&lt;p&gt;A &lt;em&gt;systemd&lt;&#x2F;em&gt; &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;systemd&#x2F;systemd&#x2F;blob&#x2F;v243&#x2F;README#L77&quot;&gt;change&lt;&#x2F;a&gt; that makes use of a kernel 
+&lt;p&gt;A &lt;em&gt;systemd&lt;&#x2F;em&gt; &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;systemd&#x2F;systemd&#x2F;blob&#x2F;v243&#x2F;README#L77&quot;&gt;change&lt;&#x2F;a&gt; that makes use of a kernel
 feature unsupported on my kernel &lt;code&gt;4.9.202&lt;&#x2F;code&gt; broke my file manager.&lt;&#x2F;p&gt;
-&lt;p&gt;Manjaro delivered a &lt;em&gt;systemd&lt;&#x2F;em&gt; upgrade without &lt;strong&gt;enforcing&lt;&#x2F;strong&gt; a minimal kernel version. 
-In Manjaro defense, they clearly stated this on their changelog, but we shouldn&#x27;t expect people to 
+&lt;p&gt;Manjaro delivered a &lt;em&gt;systemd&lt;&#x2F;em&gt; upgrade without &lt;strong&gt;enforcing&lt;&#x2F;strong&gt; a minimal kernel version.
+In Manjaro defense, they clearly stated this on their changelog, but we shouldn&#x27;t expect people to
 read it.&lt;&#x2F;p&gt;
 &lt;p&gt;This made me realize that I really need to update my kernel as it is 2 years old already.
 And, that I have a lot less issues with linux than with Windows on my daily work, take that Microsoft.&lt;&#x2F;p&gt;
 &lt;p&gt;Now an upgrade to &lt;code&gt;5.4&lt;&#x2F;code&gt; is required, see you soon...&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;epilogue-5-minutes-later&quot;&gt;Epilogue (...5 minutes later)&lt;&#x2F;h3&gt;
-&lt;p&gt;... and it is done. After all this I&#x27;m up and running on &lt;code&gt;5.4&lt;&#x2F;code&gt; and most importantly, &lt;em&gt;Dolphin&lt;&#x2F;em&gt; is 
+&lt;p&gt;... and it is done. After all this I&#x27;m up and running on &lt;code&gt;5.4&lt;&#x2F;code&gt; and most importantly, &lt;em&gt;Dolphin&lt;&#x2F;em&gt; is
 alive.&lt;&#x2F;p&gt;
 </description>
-            </item>
-        
+      </item>
     </channel>
 </rss>
