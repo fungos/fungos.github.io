@@ -53,6 +53,18 @@
         <loc>https://fungos.github.io/tags/reload/</loc>
     </url>
     <url>
+        <loc>https://fungos.github.io/tags/rust/</loc>
+    </url>
+    <url>
+        <loc>https://fungos.github.io/tags/setup/</loc>
+    </url>
+    <url>
         <loc>https://fungos.github.io/tags/systemd/</loc>
+    </url>
+    <url>
+        <loc>https://fungos.github.io/tags/vscode/</loc>
+    </url>
+    <url>
+        <loc>https://fungos.github.io/tags/windows/</loc>
     </url>
 </urlset>

@@ -56,12 +56,10 @@
             <li><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
             
             
-            <li><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+            <li><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
             
             
             
-            
-            <li><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
             
             
             
@@ -95,21 +93,22 @@
         <time class="article_time"  datetime="2019-12-11">December 11, 2019</time>
     </li>
     <span class="dotDivider"></span>
-    <li> 1832 words </li>
+    <li> 1838 words </li>
     <span class="dotDivider" ></span>
     <li> 10 min </li>
 </ul>
 
       <p>or, how systemd broke my file manager.</p>
 <h3 id="tl-dr">TL;DR</h3>
-<p><em>Systemd</em> broke my file manager and I lost about 4 hours investigating it. But I suffered less than
-if I was using Windows. Jump to the <a href="https://fungos.github.io/dolphin-deep-dive/#conclusion">conclusion</a> to see why.</p>
+<p>This post documents <em>my deep dive</em> into debugging a frustrating issue with <em>KDE Dolphin's</em> startup
+delay, caused by a kernel incompatibility with an upgraded <em>systemd</em>. Here is how I identified the
+issue and resolved it.</p>
 <h3 id="a-bit-about-my-linux-background">A bit about my linux background</h3>
 <p>I'm a long time linux desktop user (since 1998) and other than a few times where I did adventure into
 linux internals (for learning, programming or for fun), I can't remember the last time I actually had to
 do it to solve anything.</p>
-<p>I did have moments where I had fun tuning my system for no sensible reason, including custom configured
-kernels with minor personal patches here and there. I also did have my Gentoo years where everything was
+<p>I did have moments where I had fun tuning my system for no sensible reason, including custom-configured
+kernels with minor personal patches here and there. I also had my Gentoo years where everything was
 statically built with custom compiler flags and tweaks for "performance".</p>
 <p>As a system administrator, I did maintain some servers (as work and at home). But maybe in the last 10
 years my adventures on linux land where basically as a desktop user and the very few times where I needed
@@ -125,7 +124,7 @@ developer. ¯\_(ツ)_/¯</p>
 <p>I decided to write this post to myself and to document my steps investigating a problem that have been
 occurring to me in the last few weeks, which I've been delaying to check. After reading the
 <a href="https://randomascii.wordpress.com/2019/12/08/on2-again-now-in-wmi/">O(n^2), again, now in WMI</a> post
-by <strong>Bruce Dawson</strong> on how he investigated and found the reason of multi-minute delays on his workstation,
+by <strong>Bruce Dawson</strong> on how he investigated and found the reason for multi-minute delays on his workstation,
 I thought "why not try the same with my issue and see where this takes me? It could be interesting...".
 Here is it, and I hope it is.</p>
 <blockquote>
@@ -192,10 +191,10 @@ Let's see what <code>strace</code> has to say about it:</p>
 </span><span style="color:#bf616a;">futex</span><span>(0x55e72722ac90, FUTEX_WAIT_PRIVATE, 0, NULL^C) = </span><span style="color:#bf616a;">?</span><span> ERESTARTSYS (To be restarted if SA_RESTART is set)
 </span><span>&lt;delay, </span><span style="color:#bf616a;">ctrl+c</span><span>&gt;
 </span></code></pre>
-<p>This show us that we're waiting for something.
+<p>This shows us that we're waiting for something.
 Most of the output shows some communication happening between user-space and kernel-space, which could be <em>dbus</em> working.
 <em>futex</em> is a syscall for user space lock used for shared-memory synchronization, <em>IPC</em>, etc.</p>
-<p>Alright, so it is time to grab that backtrace. Lets launch within <em>GDB</em> and see what we can get from it. It may give some further hints at
+<p>Alright, so it is time to grab that backtrace. Let's launch within <em>GDB</em> and see what we can get from it. It may give some further hints at
 what exactly it is waiting for:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">➜  ~</span><span> gdb dolphin
 </span><span style="color:#bf616a;">GNU</span><span> gdb (GDB) </span><span style="color:#bf616a;">8.3.1
@@ -264,7 +263,7 @@ looked fine and working.</p>
 <p>My next step would be to try to have more information on the stack trace and if I was lucky it could
 tell me at least which kind of device I was having problem with.</p>
 <p>I looked around my distro for KDE's debug symbols and couldn't find where or if they are available.
-Luckily linux, <em>KDE</em>, <em>Qt</em>, etc. are open source, it would <em>only</em> need to get to build it myself. :)</p>
+Luckily <em>Linux</em>, <em>KDE</em>, <em>Qt</em>, etc. are open source, it would <em>only</em> need to get to build it myself. :)</p>
 <h2 id="intermission-c-and-c-build-systems-trauma">Intermission: C and C++ build systems trauma</h2>
 <p>At this moment I was cold sweating and thinking where this would take me and if it wouldn't be better
 to turn back and accept that one minute loading was my new reality until... the next update?</p>
@@ -273,14 +272,14 @@ port up-to-date <strong>on linux</strong> and failed miserably. Previously <em>G
 migrated in recent versions to an even worse thing called <em>Meson</em>. Which basically made everything
 way more complicated than the normal C build system story already is.</p>
 <p>Logically, if building <em>GTK</em> was hard then building an entire desktop environment like <em>KDE</em> would
-be a lot harder right?</p>
+be a lot harder, right?</p>
 <p>Luckily the people at <em>KDE</em> (and <em>Qt</em>) decided to use <em>CMake</em> as their build system and did a nice
 bootstrap setup. It is not perfect and other than a minor <em>perl</em> hiccup, everything worked like a charm!</p>
 <blockquote>
 <p>If you're curious, check the <em>KDE</em> <a href="https://community.kde.org/Get_Involved/development#One-time_setup:_your_development_environment">build instructions</a>.</p>
 </blockquote>
 <p>Seriously, <em>CMake</em> is not perfect but if you don't use it you're making things worse for <strong>everyone</strong>.</p>
-<p>The build itself was long (I believe about ~1h as I didn't time it) to get <code>dolphin</code> and <code>kio</code> ready.</p>
+<p>The build itself was long (I believe approximately one hour as I didn't time it) to get <code>dolphin</code> and <code>kio</code> ready.</p>
 <h2 id="debug-symbols-the-solution">Debug symbols, the solution?</h2>
 <p>With a freshly build <em>Dolphin</em> with debug symbols ready, what can <em>GDB</em> reveal?</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">➜  ~</span><span> source </span><span style="color:#bf616a;">~</span><span>/kde/build/kio/prefix.sh
@@ -336,8 +335,8 @@ bootstrap setup. It is not perfect and other than a minor <em>perl</em> hiccup, 
 </span><span style="color:#65737e;">#29 0x000055555555517b in main (argc=1, argv=0x7fffffffdcf8) at /home/fungos/kde/build/dolphin/src/dolphin_dummy.cpp:3
 </span><span>(</span><span style="color:#bf616a;">gdb</span><span>) 
 </span></code></pre>
-<p>Now we have a nice stack. This reveals a lot of stuff we missed in the first try, mostly are uninsteresting details.
-The real nice thing there is that now we know <em>which</em> device is being queried via <em>dbus</em>, which is...<em>UPower</em>?
+<p>Now we have a nice stack. This reveals a lot of stuff we missed in the first try, mostly are uninteresting details.
+The really nice thing there is that now we know <em>which</em> device is being queried via <em>dbus</em>, which is...<em>UPower</em>?
 Wait, what is happening here? <strong>WHY</strong> <em>Dolphin</em> would try to query some <em>power</em> related device white querying
 up storage stuff?</p>
 <p>Let's take a step back.
@@ -345,7 +344,7 @@ We never asked ourselves what is this <em>Solid</em> thing. Searching about it l
 on <em>KDE TechBase</em> wiki. That page explains that <em>Solid</em> is a kind of <em>Hardware Discovery Layer</em> and
 some features it provides is <em>Listing Devices</em>. In this page there is a tutorial on how your program
 can use it, but mostly important, there is information about a <code>solid-hardware</code> tool to use on command line.</p>
-<p>Lets try it:</p>
+<p>Let's try it:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">➜  ~</span><span> solid-hardware list
 </span><span style="color:#bf616a;">Object::connect:</span><span> No such signal QDBusAbstractInterface::DeviceAdded(QString)
 </span><span style="color:#bf616a;">Object::connect:</span><span> No such signal QDBusAbstractInterface::DeviceRemoved(QString)
@@ -358,7 +357,7 @@ Surely it had the exact same delay as <em>Dolphin</em> before any output was sho
 I got the same output messages about unknown signals and a new interesting error about <em>UPower dbus</em>
 timeout error.</p>
 <p>Checking again the stack trace we see that <em>Solid</em> device manager frontend will request to <code>loadBackends()</code>
-in <code>ManagerBasePrivate</code>, which in turn <a href="https://cgit.kde.org/solid.git/tree/src/solid/devices/managerbase.cpp?id=e33da0b273312877770d14ee9b6906acfacba8d0#n65">process all kind of backends</a>
+in <code>ManagerBasePrivate</code>, which in turn <a href="https://cgit.kde.org/solid.git/tree/src/solid/devices/managerbase.cpp?id=e33da0b273312877770d14ee9b6906acfacba8d0#n65">processes all kinds of backends</a>
 indiscriminately as it is agnostic about its clients intentions.</p>
 <p>Now we know that:</p>
 <ol>
@@ -380,7 +379,7 @@ waking up things.</p>
 </span><span>
 </span><span>(</span><span style="color:#bf616a;">upower:6427</span><span>): UPower-WARNING **: 22:22:36.230: Cannot connect to upowerd: Error calling StartServiceByName for org.freedesktop.UPower: Failed to activate service &#39;</span><span style="color:#a3be8c;">org.freedesktop.UPower</span><span>&#39;: timed out (service_start_timeout=25000ms)
 </span></code></pre>
-<p>Sure. So <em>upowerd</em> daemon is unreachable for some reason. If we ask <em>systemd</em> to start it:</p>
+<p>Sure. So the <em>upowerd</em> daemon is unreachable for some reason. If we ask <em>systemd</em> to start it:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">➜  ~</span><span> sudo systemctl start upower
 </span><span style="color:#bf616a;">Job</span><span> for upower.service failed because the control process exited with error code.
 </span><span style="color:#bf616a;">See </span><span>&quot;</span><span style="color:#a3be8c;">systemctl status upower.service</span><span>&quot; and &quot;</span><span style="color:#a3be8c;">journalctl -xe</span><span>&quot; for details.
@@ -406,7 +405,7 @@ the issue I was having.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>A <em>systemd</em> <a href="https://github.com/systemd/systemd/blob/v243/README#L77">change</a> that makes use of a kernel
 feature unsupported on my kernel <code>4.9.202</code> broke my file manager.</p>
-<p>Manjaro delivered a <em>systemd</em> upgrade without <strong>enforcing</strong> a minimal kernel version.
+<p>Manjaro delivered a <em>systemd</em> upgrade without <strong>enforcing</strong> the minimal kernel version required.
 In Manjaro defense, they clearly stated this on their changelog, but we shouldn't expect people to
 read it.</p>
 <p>This made me realize that I really need to update my kernel as it is 2 years old already.
@@ -441,12 +440,10 @@ alive.</p>
     <li class="button extra_small font_faint"><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
     
     
-    <li class="button extra_small font_faint"><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+    <li class="button extra_small font_faint"><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
     
     
     
-    
-    <li class="button extra_small font_faint"><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
     
     
     

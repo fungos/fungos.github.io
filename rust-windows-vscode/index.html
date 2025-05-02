@@ -56,12 +56,10 @@
             <li><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
             
             
-            <li><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+            <li><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
             
             
             
-            
-            <li><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
             
             
             
@@ -95,18 +93,19 @@
         <time class="article_time"  datetime="2017-08-12">August 12, 2017</time>
     </li>
     <span class="dotDivider"></span>
-    <li> 1961 words </li>
+    <li> 2002 words </li>
     <span class="dotDivider" ></span>
-    <li> 10 min </li>
+    <li> 11 min </li>
 </ul>
 
-      <p>When I talk about Rust, one question that comes the most is about tooling and debugging. Online this can be seen a lot, mainly about debugging on Windows.</p>
-<p>So I've decided to write a little guide mostly to practice my written English and bootstrap this blog, but also to document the current steps needed to set a good Windows Rust environment.</p>
+      <p><em>2025-05 NOTE: This is a very old post. Since then, many improvements have been made, mainly with rust-analyzer becoming the state-of-the-art analyzer replacing RLS. However, this information is still useful. Some links have been updated.</em></p>
+<p>When I talk about Rust, one question that comes the most is about tooling and debugging. Online this is frequently observed mainly when discussions are about debugging specifically on Windows.</p>
+<p>Which then I've used as an excuse to write this guide to practice my written English and bootstrap this blog, but also to document the current steps needed to set a good Windows Rust environment.</p>
 <p>Be warned that it may miss some details or be too superficial for some people.</p>
 <p>The setup described here is the one I've been using Rust on Windows (and approximately equivalent on GNU/Linux) for some time and I believe it to be the ideal setup for myself, at least for the moment.</p>
 <p>I also believe that this setup is already better than current C or C++ (take it with a grain of salt anyway), first because of Cargo, but also due the recent improvements with <a href="https://github.com/rust-lang-nursery/rls">Rust Language Server (RLS)</a> and in part due to Rust use of LLVM and the compatibility with C ABI, it can piggyback on C/C++ tools like GDB, Valgrind, profilers and lots more.</p>
-<p>This makes setting up projects, developing and debugging a breeze if compared to C/C++, even if compared with Visual Studio and Visual Assist. Only Debugging is not as clean as debugging C code, its more like an equivalent of debugging a heavy STL C++ code base and some people may find this hard.</p>
-<p>I hope this may be helpfull in some way to these getting started with Rust on Windows.</p>
+<p>This simplifies project setup, development, and debugging if compared to C/C++, even if compared with Visual Studio and Visual Assist. Only Debugging is not as clean as debugging C code, its more like an equivalent of debugging a heavy STL C++ code base and some people may find this hard.</p>
+<p>I hope this may be helpful in some way to these getting started with Rust on Windows.</p>
 <blockquote>
 <p>Note: My background is with C and C++, so I tend to compare things with these languages and probably use terminology from this background.</p>
 </blockquote>
@@ -115,7 +114,7 @@
 <p>This can be achieved in two ways:</p>
 <ul>
 <li>Having a Visual Studio C++ installation, or;</li>
-<li>Installing the smaller <a href="http://landinghub.visualstudio.com/visual-cpp-build-tools">Visual C++ Build Tools</a> for a standalone toolchain;</li>
+<li>Installing the smaller <a href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022">Visual C++ Build Tools</a> for a standalone toolchain;</li>
 </ul>
 <h2 id="rustup">Rustup</h2>
 <p>Rustup is the responsible for managing Rust compilers, Cargo, documentation, and so on. This tool is the entry point for a complete Rust environment and as Cargo, is a central part of Rust tooling.</p>
@@ -123,14 +122,14 @@
 <p>Note: To avoid any confusion with older Rust installations, if you'd already tried Rust before without Rustup, I suggest to uninstall everything (Rust, Cargo and anything related).</p>
 </blockquote>
 <p>Installing Rustup is straightforward, download it <a href="https://www.rustup.rs/">here</a> and then run it. A console window will launch as shown here:</p>
-<p><img src="/images/1/rustup-console.png" alt="rustup-init.exe" /></p>
+<p><img src="/images/rustup-console.png" alt="rustup-init.exe" /></p>
 <p>Then go with the default installation (option 1). As shown in the screenshot, it will install a stable Rust for MSVC ABI.</p>
 <p>Or by command line:</p>
 <pre data-lang="cmd" style="background-color:#2b303b;color:#c0c5ce;" class="language-cmd "><code class="language-cmd" data-lang="cmd"><span>&gt; rustup-init.exe -y
 </span></code></pre>
 <h3 id="rust-toolchain">Rust Toolchain</h3>
 <p>With Rustup installed, most of the toolchain management is done in the command line with the Rustup command. Getting used to it will surely help in the future.</p>
-<p>First, lets update everything to be sure (required if it is not a fresh install):</p>
+<p>First, let's update everything to be sure (required if it is not a fresh install):</p>
 <pre data-lang="cmd" style="background-color:#2b303b;color:#c0c5ce;" class="language-cmd "><code class="language-cmd" data-lang="cmd"><span>&gt; rustup update
 </span></code></pre>
 <p>Then, adding the nightly version of the compiler for trying experimental features and to be able to compile an useful tool (Clippy):</p>
@@ -162,7 +161,7 @@ The source and documentation will be used by analysis component to feed RLS with
 <p>But rustfmt is in active development and the recommended way is by using the nightly version:</p>
 <pre data-lang="cmd" style="background-color:#2b303b;color:#c0c5ce;" class="language-cmd "><code class="language-cmd" data-lang="cmd"><span>&gt; rustup run nightly cargo install rustfmt-nightly
 </span></code></pre>
-<p>Now, formating code should be done by issuing the command bellow, indicating it uses the nightly toolchain otherwise and error loading its dependencies will happen:</p>
+<p>Now, formatting code should be done by issuing the command below, indicating it uses the nightly toolchain otherwise and error loading its dependencies will happen:</p>
 <pre data-lang="cmd" style="background-color:#2b303b;color:#c0c5ce;" class="language-cmd "><code class="language-cmd" data-lang="cmd"><span>&gt; cargo +nightly fmt
 </span></code></pre>
 <h3 id="clippy">Clippy</h3>
@@ -216,8 +215,8 @@ The source and documentation will be used by analysis component to feed RLS with
 <h2 id="debugging">Debugging</h2>
 <p>Now that everything is in place, the last thing is configuring a Rust project to be debugged.</p>
 <p>Create a debug configuration by going to the <code>(1) Debug Panel</code>, then clicking on the <code>(2) Debug Configuration Dropdown</code> and then select <code>(3) C++ (Windows)</code> option as shown below:</p>
-<p><img src="/images/1/vscode-debug-cfg.png#center" alt="debug" /></p>
-<p><img src="/images/1/vscode-debug-msvc.png#center" alt="debug" /></p>
+<p><img src="/images/vscode-debug-cfg.png#center" alt="debug" /></p>
+<p><img src="/images/vscode-debug-msvc.png#center" alt="debug" /></p>
 <p>This will open a new file in the editor, called <code>launch.json</code> where all launch settings are managed.</p>
 <p>The initial contents of the file aren't good because VSCode does not know details about the loaded Rust project (and I don't believe extensions can do anything here to help with it, at least for the current version), so a little tweak is required.</p>
 <p>The current file should look as this:</p>
@@ -287,7 +286,7 @@ The source and documentation will be used by analysis component to feed RLS with
 <li>Fixed missing analysis component and rustfmt-nightly on text and script. Thanks @dodheim (Reddit).</li>
 <li>Added more information about how to add a natvis file into <code>launch.json</code> and mention that soon it will not be required, as it will be automatically embedded onto PDB files.</li>
 <li>Add information and fix typo. Closes <a href="https://github.com/fungos/fungos.github.io/issues/1">issue #1</a> by @TheCycoONE (Github).</li>
-<li>Update rustup rls component name to rls-preivew. Closes <a href="https://github.com/fungos/fungos.github.io/issues/2">issue #2</a> by @cbordeman  (Github).</li>
+<li>Update rustup rls component name to rls-prevew. Closes <a href="https://github.com/fungos/fungos.github.io/issues/2">issue #2</a> by @cbordeman  (Github).</li>
 </ul>
 
       
@@ -315,12 +314,10 @@ The source and documentation will be used by analysis component to feed RLS with
     <li class="button extra_small font_faint"><a href="https://github.com/fungos" target="_blank" >fungos</a><i class="fab fa-github" ></i></li>
     
     
-    <li class="button extra_small font_faint"><a href="https://mastodon.gamedev.place/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
+    <li class="button extra_small font_faint"><a href="https://twitter.com/fungos" target="_blank">@fungos</a><i class="fab fa-twitter" ></i></li>
     
     
     
-    
-    <li class="button extra_small font_faint"><a href="https://www.linkedin.com/in/dannygrein" target="_blank">dannygrein</a><i class="fab fa-linkedin" ></i></li>
     
     
     
